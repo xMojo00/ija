@@ -10,7 +10,7 @@ public class Street implements draw_map{
 
 
 
-    static Street defaultStreet​(java.lang.String id, Coordinate... coordinates){
+    static Street defaultStreet(java.lang.String id, Coordinate... coordinates){
         int counter = 0;
 
         while(counter != coordinates.length - 1){
@@ -61,7 +61,7 @@ public class Street implements draw_map{
         return stops;
     }
 
-    public boolean addStop​(Stop stop) {
+    public boolean addStop(Stop stop) {
         Coordinate tmp = stop.getCoordinate();
         int counter = 0;
         while (counter + 1 != co.size()) {
@@ -69,7 +69,7 @@ public class Street implements draw_map{
                 if ((tmp.getY() >= co.get(counter).getY()) && (tmp.getY() <= co.get(counter + 1).getY()) ||
                         (tmp.getY() <= co.get(counter).getY()) && (tmp.getY() >= co.get(counter + 1).getY())) {
                     stops.add(stop);
-                    stop.setStreet​(this);
+                    stop.setStreet(this);
                     return true;
                 }
             }
@@ -77,7 +77,7 @@ public class Street implements draw_map{
                 if ((tmp.getX() >= co.get(counter).getX()) && (tmp.getX() <= co.get(counter + 1).getX()) ||
                         (tmp.getX() <= co.get(counter).getX()) && (tmp.getX() >= co.get(counter + 1).getX())) {
                     stops.add(stop);
-                    stop.setStreet​(this);
+                    stop.setStreet(this);
                     return true;
                 }
             }
@@ -87,7 +87,7 @@ public class Street implements draw_map{
 
     }
 
-    public boolean follows​(Street s) {
+    public boolean follows(Street s) {
         /*if(this.begin().equals(s.begin()) || this.begin().equals(s.end()) || this.end().equals(s.begin()) || this.end().equals(s.end())){
             return true;
         }

@@ -26,9 +26,8 @@ public class Coordinate {
         this.y = y;
     }
 
-
     //@Override
-    public boolean equals​(java.lang.Object obj){
+    public boolean equals(java.lang.Object obj) {
         Coordinate temp = (Coordinate) obj;
         if(temp.getX() == this.getX() && temp.getY() == this.getY()){
             return true;

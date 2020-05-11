@@ -26,10 +26,10 @@ public class main extends Application {
         c4 = Coordinate.create(80,30);
         c5 = Coordinate.create(200,30);
         st1 = Coordinate.create(30,80);
-        Street s1 = Street.defaultStreet​("adsad", c1, c2, c3);
-        Street s2 = Street.defaultStreet​("adsadd", c3, c4, c5);
-        Stop stop1 = Stop.defaultStop​("stop1", st1);
-        Vehicle veh = Vehicle.defaultVehicle​("asdddd", c4);
+        Street s1 = Street.defaultStreet("ulice 1", c1, c2, c3);
+        Street s2 = Street.defaultStreet("adsadd", c3, c4, c5);
+        Stop stop1 = Stop.defaultStop("stop1", st1);
+        Vehicle veh = Vehicle.defaultVehicle("audi", c4);
         veh.set_destination(c5);
 
        controller my_controller = load.getController();

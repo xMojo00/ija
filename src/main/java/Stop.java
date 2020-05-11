@@ -23,15 +23,15 @@ public class Stop implements draw_map{
         }
     }
 
-    public void setStreet​(Street s) {//ok
+    public void setStreet(Street s) {
         this.stop_street = s;
     }
 
     public Street getStreet() {
         return this.stop_street;
     }
-
-    static Stop defaultStop​(java.lang.String id, Coordinate c){
+    
+    static Stop defaultStop(java.lang.String id, Coordinate c){
         return new Stop(id, c);
     }
     public Stop(String id, Coordinate c){

@@ -11,7 +11,7 @@ public class Vehicle implements draw_map{
     private static Coordinate destination;
     private List<Shape> bus;
 
-    static Vehicle defaultVehicle​(java.lang.String id, Coordinate c){
+    static Vehicle defaultVehicle(java.lang.String id, Coordinate c){
         return new Vehicle(id, c);
     }
     public Vehicle(String id, Coordinate c){
