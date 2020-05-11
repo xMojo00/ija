@@ -12,13 +12,7 @@ public class Street implements draw_map{
 
     static Street defaultStreet(java.lang.String id, Coordinate... coordinates){
         int counter = 0;
-
-        while(counter != coordinates.length - 1){
-            if(coordinates[counter].getX() != coordinates[counter + 1].getX() && coordinates[counter].getY() != coordinates[counter + 1].getY()){
-                return null;
-            }
-            counter++;
-        }
+        counter++;
         return new Street(id, coordinates);
     }
 
@@ -33,12 +27,12 @@ public class Street implements draw_map{
     }
 
 
-    public java.lang.String getId() {
+    public String getId() {
         return this.street_id;
 
     }
 
-    public java.util.List<Coordinate> getCoordinates() {
+    public List<Coordinate> getCoordinates() {
         ArrayList<Coordinate> retco = new ArrayList<Coordinate>();
         int counter = 0;
         while (counter != co.size()) {
@@ -57,7 +51,7 @@ public class Street implements draw_map{
         return co.get(co.size() - 1);
     }
 
-    public java.util.List<Stop> getStops() {
+    public List<Stop> getStops() {
         return stops;
     }
 

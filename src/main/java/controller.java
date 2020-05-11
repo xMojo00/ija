@@ -32,4 +32,5 @@ public class controller {
             map.getChildren().addAll(draw_map.draw());
         }
     }
+
 }

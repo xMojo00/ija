@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //sudo apt install openjfx=8u161-b12-1ubuntu2 openjfx-source=8u161-b12-1ubuntu2 libopenjfx-java=8u161-b12-1ubuntu2 libopenjfx-jni=8u161-b12-1ubuntu2
 
@@ -26,10 +28,10 @@ public class main extends Application {
         c4 = Coordinate.create(80,30);
         c5 = Coordinate.create(200,30);
         st1 = Coordinate.create(30,80);
-        Street s1 = Street.defaultStreet("ulice 1", c1, c2, c3);
-        Street s2 = Street.defaultStreet("adsadd", c3, c4, c5);
+        Street s1 = Street.defaultStreet("ulice 1", c1, c2);
+        Street s2 = Street.defaultStreet("adsadd", c2, c5);
         Stop stop1 = Stop.defaultStop("stop1", st1);
-        Vehicle veh = Vehicle.defaultVehicle("audi", c4);
+        Vehicle veh = Vehicle.defaultVehicle("audi", c2);
         veh.set_destination(c5);
 
        controller my_controller = load.getController();
@@ -39,6 +41,9 @@ public class main extends Application {
        objects.add(stop1);
        objects.add(veh);
        my_controller.draw_parts(objects);
+
+
+
     }
 
 }

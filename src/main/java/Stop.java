@@ -9,6 +9,7 @@ public class Stop implements draw_map{
     private String Stop_id;  //street id
     private Street stop_street;   //ulice
     private Coordinate xy; // souradnice zastavky
+    private Boolean is_corner = false;
 
     public java.lang.String getId() {
         return this.Stop_id;
@@ -30,7 +31,7 @@ public class Stop implements draw_map{
     public Street getStreet() {
         return this.stop_street;
     }
-    
+
     static Stop defaultStop(java.lang.String id, Coordinate c){
         return new Stop(id, c);
     }
@@ -38,11 +39,7 @@ public class Stop implements draw_map{
         this.Stop_id = id;
         this.xy = c;
     }
-
-    public String toString() {
-        return "stop("+ this.Stop_id +')';
-    }
-
+    
     @Override
     public List<Shape> draw(){
         return Collections.singletonList(
