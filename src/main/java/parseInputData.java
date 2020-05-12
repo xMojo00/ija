@@ -26,7 +26,7 @@ public class parseInputData {
     public List<Stop> get_stops(){
 
         String data = get_data();
-        System.out.print(data);
+        //System.out.print(data);
 
         return null;
     }

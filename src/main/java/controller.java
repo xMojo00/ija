@@ -1,6 +1,7 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 
@@ -13,6 +14,8 @@ import java.util.TimerTask;
 public class controller {
     private LocalTime time = LocalTime.of(0,0,0);
     private List<draw_map> part = new ArrayList<>();
+    private List<Vehicle> vehicles = new ArrayList<>();
+    private int var_time_speed = 1;
 
     @FXML
     private Pane map;
@@ -21,8 +24,10 @@ public class controller {
     Label watch;
 
     @FXML
-    private void zoom(ScrollEvent event){
+    Slider time_speed_slider;
 
+    @FXML
+    private void zoom(ScrollEvent event){
         event.consume();
 
         if(event.getDeltaY() > 0){
@@ -35,12 +40,19 @@ public class controller {
         }
     }
 
+    @FXML
+    private void speed_change(){
+        var_time_speed = (int) time_speed_slider.getValue();
+        System.out.println(var_time_speed);
+    }
+
     public void draw_parts(List<draw_map> part){
         this.part = part;
         for(draw_map draw_map : part){
             map.getChildren().addAll(draw_map.draw());
         }
     }
+
 
     public void remove_parts(List<draw_map> part){
         this.part = part;
@@ -49,18 +61,24 @@ public class controller {
         }
     }
 
-    public void start_timer(List<Vehicle> veh) {
-        Timer timer = new Timer();
+    public void start_timer(List<Line> lines) {
+        Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 set_time();
-                veh.get(0).move();
-                veh.get(1).move();
-                time = time.plusSeconds(1);
+                for(int i = 0; i < lines.size(); i++){
+                    List<LocalTime> start_times = lines.get(i).get_start_times();
+                    for(int j = 0; j < start_times.size(); j++){
+                        if(time.getHour() == start_times.get(j).getHour() && time.getMinute() == start_times.get(j).getMinute() && time.getSecond() == start_times.get(j).getSecond()){
+                            vehicles.add(Vehicle.defaultVehicle(lines.get(i).get_line_id(), lines.get(i).start_stop()));
+                        }
+                    }
+                }
+
+                time = time.plusSeconds(var_time_speed);
             }
         }, 0, 1000);
-
     }
 
     public void set_time(){

@@ -3,6 +3,7 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -25,4 +26,7 @@
    <top>
       <Label fx:id="watch" text="Label" BorderPane.alignment="CENTER" />
    </top>
+   <left>
+      <Slider fx:id="time_speed_slider" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="2" onMouseReleased="#speed_change" orientation="VERTICAL" snapToTicks="true" value="1.0" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>

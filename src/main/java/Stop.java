@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Stop implements draw_map{
-    private String Stop_id;  //street id
-    private Street stop_street;   //ulice
-    private Coordinate xy; // souradnice zastavky
+    private String Stop_id;         //street id
+    private Street stop_street;     //ulice
+    private Coordinate xy;          //souradnice zastavky
     private Boolean is_corner = false;
 
     public java.lang.String getId() {
@@ -30,6 +30,10 @@ public class Stop implements draw_map{
 
     public Street getStreet() {
         return this.stop_street;
+    }
+
+    public Coordinate get_coordinates(){
+        return this.xy;
     }
 
     static Stop defaultStop(java.lang.String id, Coordinate c){

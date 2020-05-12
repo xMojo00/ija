@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vehicle implements draw_map{
-    private String vehicle_id;
+    private int line_id;
     private Coordinate actual_position;
     private Coordinate destination;
     private List<Shape> bus;
 
-    static Vehicle defaultVehicle(java.lang.String id, Coordinate c){
+    static Vehicle defaultVehicle(int id, Coordinate c){
         return new Vehicle(id, c);
     }
-    public Vehicle(String id, Coordinate c){
-        this.vehicle_id = id;
+    public Vehicle(int id, Coordinate c){
+        this.line_id = id;
         this.actual_position = c;
 
         bus = new ArrayList<>();
@@ -28,6 +28,10 @@ public class Vehicle implements draw_map{
 
     public void set_destination ( Coordinate c){
         this.destination = c;
+    }
+
+    public void set_actual_position(Stop stop){
+        this.actual_position = stop.get_coordinates();
     }
 
     public void move(){
