@@ -1,4 +1,4 @@
-public class Coordinate {
+public class Coordinate implements Cloneable{
     protected double x = 0;
     protected double y = 0;
 
@@ -39,5 +39,9 @@ public class Coordinate {
         else{
             return false;
         }
+    }
+
+    public Object clone()throws CloneNotSupportedException{
+        return super.clone();
     }
 }

@@ -50,6 +50,12 @@ public class main extends Application {
         Line l1 = Line.defaltLine("c. 23", 1, casy, stop_list);
         Lines.add(l1);
 
+        List<LocalTime> casy2 = new ArrayList<>();
+        LocalTime cas2 = LocalTime.of(0,0,5);
+        casy.add(cas2);
+        Line l2 = Line.defaltLine("c. 23", 1, casy2, stop_list);
+        Lines.add(l2);
+
         my_controller.start_timer(Lines);
     }
 }

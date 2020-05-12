@@ -17,7 +17,13 @@ public class Vehicle implements draw_map{
     }
     public Vehicle(Line id){
         this.line = id;
-        this.actual_position = id.start_stop();
+
+        // due to overriding stop position
+        try {
+            this.actual_position = (Coordinate) id.start_stop().clone();
+        } catch (CloneNotSupportedException e) {
+        }
+
         this.destination = id.get_stop(index).get_coordinates();
 
         bus = new ArrayList<>();
@@ -28,10 +34,10 @@ public class Vehicle implements draw_map{
         return (index >= line.stop_count());
     }
 
-    public void move(int multiplier){
+    public void move(int multiplier) {
 
         if (index >= line.stop_count()) return;
-        if(actual_position.x == destination.x && actual_position.y == destination.y) {
+        if (actual_position.x == destination.x && actual_position.y == destination.y) {
             index++;
             if (index >= line.stop_count()) return;
             destination = line.get_stop(index).get_coordinates();
@@ -61,10 +67,14 @@ public class Vehicle implements draw_map{
             this.actual_position.y = this.destination.y;
         }
 
-        for(Shape shape : bus){
+
+
+
+        for (Shape shape : bus) {
             shape.setLayoutX(this.actual_position.getX());
             shape.setLayoutY(this.actual_position.getY());
         }
+
     }
 
     public Coordinate get_actual_position(){
