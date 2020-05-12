@@ -13,26 +13,14 @@ public class Vehicle implements draw_map{
     private int index = 1;
 
     static Vehicle defaultVehicle(Line id, Coordinate c){
-        return new Vehicle(id, c);
+        return new Vehicle(id);
     }
-    public Vehicle(Line id, Coordinate c){
+    public Vehicle(Line id){
         this.line = id;
-        this.actual_position = c;
+        this.actual_position = id.start_stop();
 
         bus = new ArrayList<>();
         bus.add(new Circle(actual_position.getX(),actual_position.getY(), 2, Color.BLUE));
-    }
-
-    public Coordinate getCoordinate() {
-        return this.actual_position;
-    }
-
-    public void set_destination ( Coordinate c){
-        this.destination = c;
-    }
-
-    public void set_actual_position(Stop stop){
-        this.actual_position = stop.get_coordinates();
     }
 
     public void move(){
