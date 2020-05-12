@@ -22,6 +22,7 @@ public class main extends Application {
         primaryStage.show();
 
         Coordinate c1, c2, c3, c4, c5, st1;
+        parseInputData parser = new parseInputData();
         c1 = Coordinate.create(15,80);
         c2 = Coordinate.create(80,80);
         c3 = Coordinate.create(80,150);
@@ -42,7 +43,9 @@ public class main extends Application {
        objects.add(veh);
        my_controller.draw_parts(objects);
 
-
+       List<Stop> stop_list = parser.get_stops();
+       System.out.print("stop_list");
+       System.out.print(stop_list);
 
     }
 
