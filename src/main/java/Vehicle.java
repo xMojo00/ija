@@ -30,6 +30,13 @@ public class Vehicle implements draw_map{
         this.destination = c;
     }
 
+    public void move(){
+        this.actual_position = Coordinate.create(this.actual_position.getX()+10, this.actual_position.getY());
+        for(Shape shape : bus){
+            shape.setLayoutX(this.actual_position.getX());
+        }
+    }
+
     @Override
     public List<Shape> draw(){
         return bus;

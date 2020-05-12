@@ -6,8 +6,6 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 //sudo apt install openjfx=8u161-b12-1ubuntu2 openjfx-source=8u161-b12-1ubuntu2 libopenjfx-java=8u161-b12-1ubuntu2 libopenjfx-jni=8u161-b12-1ubuntu2
 
@@ -33,19 +31,29 @@ public class main extends Application {
         Street s2 = Street.defaultStreet("adsadd", c2, c5);
         Stop stop1 = Stop.defaultStop("stop1", st1);
         Vehicle veh = Vehicle.defaultVehicle("audi", c2);
+        Vehicle veh1 = Vehicle.defaultVehicle("audi1", c3);
         veh.set_destination(c5);
-
        controller my_controller = load.getController();
+
+       //data
        List<draw_map> objects = new ArrayList<>();
+       List<draw_map> objectss = new ArrayList<>();
+       List<Vehicle> vehs = new ArrayList<>();
        objects.add(s1);
        objects.add(s2);
        objects.add(stop1);
        objects.add(veh);
+       objects.add(veh1);
+       vehs.add(veh);
+       vehs.add(veh1);
+
        my_controller.draw_parts(objects);
 
        List<Stop> stop_list = parser.get_stops();
-       System.out.print("stop_list");
-       System.out.print(stop_list);
+       //System.out.print("stop_list");
+       //System.out.print(stop_list);
+
+       my_controller.start_timer(vehs);
 
     }
 
