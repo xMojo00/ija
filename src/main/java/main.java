@@ -43,6 +43,10 @@ public class main extends Application {
         List<LocalTime> casy = new ArrayList<>();
         LocalTime cas1 = LocalTime.of(0,0,0);
         casy.add(cas1);
+        cas1 = LocalTime.of(0,0,5);
+        casy.add(cas1);
+        cas1 = LocalTime.of(0,0,10);
+        casy.add(cas1);
         Line l1 = Line.defaltLine("c. 23", 1, casy, stop_list);
         Lines.add(l1);
 

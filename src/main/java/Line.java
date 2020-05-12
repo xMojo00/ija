@@ -37,4 +37,8 @@ public class Line {
     public Coordinate start_stop(){
         return this.stops.get(0).get_coordinates();
     }
+
+    public Coordinate last_stop(){
+        return this.stops.get(stops.size()-1).get_coordinates();
+    }
 }

@@ -12,7 +12,7 @@ public class Vehicle implements draw_map{
     private List<Shape> bus;
     private int index = 1;
 
-    static Vehicle defaultVehicle(Line id, Coordinate c){
+    static Vehicle defaultVehicle(Line id){
         return new Vehicle(id);
     }
     public Vehicle(Line id){
@@ -65,6 +65,10 @@ public class Vehicle implements draw_map{
             shape.setLayoutX(this.actual_position.getX());
             shape.setLayoutY(this.actual_position.getY());
         }
+    }
+
+    public Coordinate get_actual_position(){
+        return this.actual_position;
     }
 
     @Override

@@ -71,7 +71,7 @@ public class controller {
                     List<LocalTime> start_times = lines.get(i).get_start_times();
                     for (LocalTime start_time : start_times) {
                         if (time.getHour() == start_time.getHour() && time.getMinute() == start_time.getMinute() && time.getSecond() == start_time.getSecond()) {
-                            Vehicle v = Vehicle.defaultVehicle(lines.get(i), lines.get(i).start_stop());
+                            Vehicle v = Vehicle.defaultVehicle(lines.get(i));
                             vehicles.add(v);
                             List<draw_map> part = new ArrayList<>();
                             part.add(v);
@@ -81,8 +81,20 @@ public class controller {
                         }
                     }
                 }
+
+                for(int i = 0; i < vehicles.size(); i++) {
+                    if(vehicles.get(i).is_in_end()) {
+                        List<draw_map> part = new ArrayList<>();
+                        part.add(vehicles.get(i));
+                        for (draw_map draw_map : part) {
+                            Platform.runLater(() -> map.getChildren().removeAll(draw_map.draw()));
+                        }
+                        vehicles.remove(i);
+                    }
+                }
+
                 for(int i = 0; i < vehicles.size(); i++){
-                    vehicles.get(i).move(10);
+                    vehicles.get(i).move(var_time_speed);
                 }
                 time = time.plusSeconds(var_time_speed);
             }
