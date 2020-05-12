@@ -8,8 +8,8 @@ public class parseInputData {
         try {
             String path = parseInputData.class.getResource("parseInputData.class").toString().substring(6);
             path = path.substring(0, path.length() - 44);
-            String slash = path.substring(path.length()-1, path.length());
-            path = path + "data" + slash + "data.json";
+            path = path + "data/data.json";
+            path = "/" + path;
             String content = new Scanner(new File(path)).useDelimiter("\\Z").next();
             return content;
         } catch (java.io.FileNotFoundException e) {
