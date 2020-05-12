@@ -6,48 +6,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Stop implements draw_map{
-    private String Stop_id;         //street id
-    private Street stop_street;     //ulice
+    private int stop_id;         //street id
+    private String stop_name;   //ulice
     private Coordinate xy;          //souradnice zastavky
     private Boolean is_corner = false;
-
-    public java.lang.String getId() {
-        return this.Stop_id;
-    }
-
-    public Coordinate getCoordinate() {
-        if(null == this.xy){
-            return null;
-        }
-        else{
-            return this.xy;
-        }
-    }
-
-    public void setStreet(Street s) {
-        this.stop_street = s;
-    }
-
-    public Street getStreet() {
-        return this.stop_street;
-    }
 
     public Coordinate get_coordinates(){
         return this.xy;
     }
 
-    static Stop defaultStop(java.lang.String id, Coordinate c){
-        return new Stop(id, c);
-    }
-    public Stop(String id, Coordinate c){
-        this.Stop_id = id;
+    public Stop(int id, String name, Coordinate c){
+        this.stop_id = id;
+        this.stop_name = name;
         this.xy = c;
     }
     
     @Override
     public List<Shape> draw(){
         return Collections.singletonList(
-                new Circle(xy.getX(),xy.getY(), 8, Color.RED)
+                new Circle(xy.getX(),xy.getY(), 1.5, Color.RED)
         );
     }
 }

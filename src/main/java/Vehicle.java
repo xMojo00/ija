@@ -10,6 +10,7 @@ public class Vehicle implements draw_map{
     private Coordinate actual_position;
     private Coordinate destination;
     private List<Shape> bus;
+    private int index = 1;
 
     static Vehicle defaultVehicle(Line id, Coordinate c){
         return new Vehicle(id, c);
@@ -19,7 +20,7 @@ public class Vehicle implements draw_map{
         this.actual_position = c;
 
         bus = new ArrayList<>();
-        bus.add(new Circle(actual_position.getX(),actual_position.getY(), 8, Color.BLUE));
+        bus.add(new Circle(actual_position.getX(),actual_position.getY(), 2, Color.BLUE));
     }
 
     public Coordinate getCoordinate() {
@@ -35,9 +36,13 @@ public class Vehicle implements draw_map{
     }
 
     public void move(){
-        this.actual_position = Coordinate.create(this.actual_position.getX()+1, this.actual_position.getY());
+        /////
+
+        ///
+
         for(Shape shape : bus){
             shape.setLayoutX(this.actual_position.getX());
+            shape.setLayoutY(this.actual_position.getY());
         }
     }
 
