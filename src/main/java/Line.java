@@ -18,6 +18,14 @@ public class Line {
         this.stops = stops;
     }
 
+    public Stop get_stop(int index) {
+        return this.stops.get(index);
+    }
+
+    public int stop_count() {
+        return stops.size();
+    }
+
     public List<LocalTime> get_start_times(){
         return this.start_times;
     }

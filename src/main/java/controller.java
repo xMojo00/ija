@@ -82,7 +82,7 @@ public class controller {
                     }
                 }
                 for(int i = 0; i < vehicles.size(); i++){
-                    vehicles.get(i).move();
+                    vehicles.get(i).move(10);
                 }
                 time = time.plusSeconds(var_time_speed);
             }
