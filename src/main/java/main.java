@@ -42,22 +42,24 @@ public class main extends Application {
         List<draw_map> objectss = new ArrayList<>();
         List<Line> Lines = new ArrayList<>();
         List<LocalTime> casy = new ArrayList<>();
+        List<LocalTime> casyy = new ArrayList<>();
         List<Vehicle> vehs = new ArrayList<>();
         List<Stop> stopss = new ArrayList<>();
 
-        LocalTime cas1 = LocalTime.of(0,1,0);
+        LocalTime cas1 = LocalTime.of(0,0,0);
+        LocalTime cas2 = LocalTime.of(0,0,10);
         casy.add(cas1);
         stopss.add(stop1);
         stopss.add(stop2);
         Line l1 = Line.defaltLine("c. 23", 1, casy, stopss);
+        casyy.add(cas2);
+        Line l2 = Line.defaltLine("c. 23", 1, casyy, stopss);
         Lines.add(l1);
+        Lines.add(l2);
         objects.add(s1);
         objects.add(s2);
         objects.add(stop1);
-        //objects.add(veh);
-        //objects.add(veh1);
-        //vehs.add(veh);
-        //vehs.add(veh1);
+        objects.add(stop2);
 
 
        my_controller.draw_parts(objects);

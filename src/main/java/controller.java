@@ -69,13 +69,21 @@ public class controller {
                 set_time();
                 for(int i = 0; i < lines.size(); i++){
                     List<LocalTime> start_times = lines.get(i).get_start_times();
-                    for(int j = 0; j < start_times.size(); j++){
-                        if(time.getHour() == start_times.get(j).getHour() && time.getMinute() == start_times.get(j).getMinute() && time.getSecond() == start_times.get(j).getSecond()){
-                            vehicles.add(Vehicle.defaultVehicle(lines.get(i).get_line_id(), lines.get(i).start_stop()));
+                    for (LocalTime start_time : start_times) {
+                        if (time.getHour() == start_time.getHour() && time.getMinute() == start_time.getMinute() && time.getSecond() == start_time.getSecond()) {
+                            Vehicle v = Vehicle.defaultVehicle(lines.get(i), lines.get(i).start_stop());
+                            vehicles.add(v);
+                            List<draw_map> part = new ArrayList<>();
+                            part.add(v);
+                            for(draw_map draw_map : part){
+                                Platform.runLater(() -> map.getChildren().addAll(draw_map.draw()));
+                            }
                         }
                     }
                 }
-
+                for(int i = 0; i < vehicles.size(); i++){
+                    vehicles.get(i).move();
+                }
                 time = time.plusSeconds(var_time_speed);
             }
         }, 0, 1000);
