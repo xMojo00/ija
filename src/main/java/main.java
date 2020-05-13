@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ public class main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-
 
 
         parseInputData parser = new parseInputData();
@@ -41,12 +41,14 @@ public class main extends Application {
         my_controller.draw_parts(objects);
 
         for (Street s : street_list) {
-            s.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println(s.getId());
-                }
-            });
+            for (Shape shape:s.getMy_shape()) {
+                shape.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println(s.getId());
+                    }
+                });
+            }
         }
 
         my_controller.start_timer(lines_list);
