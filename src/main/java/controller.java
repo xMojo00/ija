@@ -106,7 +106,7 @@ public class controller {
                 for(int i = 0; i < lines.size(); i++){
                     List<LocalTime> start_times = lines.get(i).get_start_times();
                     for (LocalTime start_time : start_times) {
-                        if ((lastTick.isBefore(start_time) && time.isAfter(start_time))|| time.equals(start_time)) {
+                        if ((lastTick.isBefore(start_time) && time.isAfter(start_time)) || time.equals(start_time)) {
                             Vehicle v = Vehicle.defaultVehicle(lines.get(i));
                             vehicles.add(v);
                             List<draw_map> part = new ArrayList<>();
