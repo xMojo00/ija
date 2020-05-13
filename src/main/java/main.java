@@ -1,10 +1,11 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class main extends Application {
         primaryStage.show();
 
 
+
         parseInputData parser = new parseInputData();
         controller my_controller = load.getController();
         List<Stop> stop_list = parser.get_stops();
@@ -29,6 +31,7 @@ public class main extends Application {
 
         List<draw_map> objects = new ArrayList<>();
 
+
         for (Street s: street_list) {
             objects.add(s);
         }
@@ -36,6 +39,15 @@ public class main extends Application {
             objects.add(s);
         }
         my_controller.draw_parts(objects);
+
+        for (Street s : street_list) {
+            s.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println(s.getId());
+                }
+            });
+        }
 
         my_controller.start_timer(lines_list);
     }

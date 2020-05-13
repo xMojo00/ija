@@ -53,7 +53,6 @@ public class controller {
         }
     }
 
-
     public void remove_parts(List<draw_map> part){
         this.part = part;
         for(draw_map draw_map : part){
