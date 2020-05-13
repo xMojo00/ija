@@ -85,6 +85,18 @@ public class controller {
         }
     }
 
+    public void remove_all_vehicles(){
+        int size = vehicles.size();
+        for(int i = 0; i < size; i++) {
+            List<draw_map> veh = new ArrayList<>();
+            veh.add(vehicles.get(0));
+            for (draw_map draw_map : veh) {
+                Platform.runLater(() -> map.getChildren().removeAll(draw_map.draw()));
+            }
+            vehicles.remove(0);
+        }
+    }
+
     public void start_timer(List<Line> lines) {
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -184,6 +196,7 @@ public class controller {
         if((hours.getText().matches("^[0-1]?[0-9]$|^[2]?[0-3]$"))){
             if(minutes.getText().matches("^[0-5]?[0-9]$")){
                 if(seconds.getText().matches("^[0-5]?[0-9]$")){
+                    remove_all_vehicles();
                     time = LocalTime.of(Integer.parseInt(hours.getText()),Integer.parseInt(minutes.getText()),Integer.parseInt(seconds.getText()));
                 }
             }

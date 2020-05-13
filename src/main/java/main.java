@@ -73,6 +73,5 @@ public class main extends Application {
         });
 
         my_controller.start_timer(lines_list);
-
     }
 }

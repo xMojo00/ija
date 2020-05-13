@@ -1,11 +1,9 @@
 # ija
 ##TODO
-- Vypis informaci do boxu
-- Vymyslet data
-- Zvetsit default zoom + stred
+- Vypis informaci do boxu 3/4
+- Vymyslet data 2/3
+- zoom na stred ??
 - Dodelat vypocet preskaku
-- Nevykreslovani rohu
-- Debug vypis ulic + stopek
-- informace stopky + linka
+- informace doplnit casy odjezdu
 - nastaveni casu
 - mravenec
