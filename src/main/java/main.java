@@ -31,7 +31,6 @@ public class main extends Application {
         List<Street> street_list = parser.get_streets(stop_list);
         List<Line> lines_list = parser.get_lines(stop_list);
         List<draw_map> objects = new ArrayList<>();
-        List<Vehicle> vehicles_list = new ArrayList<>();
 
 
         for (Street s: street_list) {

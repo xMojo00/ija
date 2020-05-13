@@ -7,10 +7,6 @@ public class Line {
     private List<LocalTime> start_times;
     private List<Stop> stops;
 
-    static Line defaltLine( String name, int line_id, List<LocalTime> starts, List<Stop> stops) {
-        return new Line(starts, stops, name, line_id);
-    }
-
     public Line(List<LocalTime> starts, List<Stop> stops, String name, int line_id) {
         this.name = name;
         this.line_id = line_id;

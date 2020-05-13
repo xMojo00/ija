@@ -19,25 +19,8 @@ public class Street implements draw_map{
        this.stops = stops;
     }
 
-
-    public int getId() {
-        return this.street_id;
-    }
-
     public String get_street_name() {
         return this.street_name;
-    }
-
-    public List<Coordinate> getCoordinates() {
-        return this.co;
-    }
-
-    public Coordinate begin() {
-        return co.get(0);
-    }
-
-    public Coordinate end() {
-        return co.get(co.size() - 1);
     }
 
     public List<Stop> getStops() {
@@ -50,7 +33,7 @@ public class Street implements draw_map{
 
     @Override
     public List<Shape> draw(){
-        List<Shape> tmp_list = new ArrayList<Shape>();
+        List<Shape> tmp_list = new ArrayList<>();
         int counter = 0;
         while (counter != co.size() - 1) {
             tmp_list.add(new Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter + 1).getX(), co.get(counter + 1).getY()));
