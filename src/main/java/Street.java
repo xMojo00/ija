@@ -8,6 +8,7 @@ public class Street implements draw_map{
     private String street_name;
     private ArrayList<Coordinate> co = new ArrayList<Coordinate>();
     private ArrayList<Stop> stops = new ArrayList<Stop>();
+    private Shape my_shape;
 
 
     public Street(int id, String name, ArrayList<Coordinate> coordinates, ArrayList<Stop> stops) {
@@ -38,15 +39,19 @@ public class Street implements draw_map{
         return this.stops;
     }
 
+    public Shape getMy_shape() {
+        return this.my_shape;
+    }
 
     @Override
     public List<Shape> draw(){
-        List<Shape> sss = new ArrayList<Shape>();
+        List<Shape> tmp_list = new ArrayList<Shape>();
         int counter = 0;
         while (counter != co.size() - 1) {
-            sss.add(new Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter+1).getX(), co.get(counter+1).getY()));
+            tmp_list.add(new Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter+1).getX(), co.get(counter+1).getY()));
+            this.my_shape = tmp_list.get(0);
             counter++;
         }
-        return sss;
+        return tmp_list;
     }
 }
