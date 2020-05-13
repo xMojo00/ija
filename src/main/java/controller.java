@@ -13,6 +13,7 @@ import java.util.TimerTask;
 
 public class controller {
     private LocalTime time = LocalTime.of(0,0,0);
+    private LocalTime lastTick = LocalTime.of(0,0,0);
     private List<draw_map> part = new ArrayList<>();
     private List<Vehicle> vehicles = new ArrayList<>();
     private int var_time_speed = 1;
@@ -70,7 +71,7 @@ public class controller {
                 for(int i = 0; i < lines.size(); i++){
                     List<LocalTime> start_times = lines.get(i).get_start_times();
                     for (LocalTime start_time : start_times) {
-                        if (time.getHour() == start_time.getHour() && time.getMinute() == start_time.getMinute() && time.getSecond() == start_time.getSecond()) {
+                        if ((lastTick.isBefore(start_time) && time.isAfter(start_time))|| time.equals(start_time)) {
                             Vehicle v = Vehicle.defaultVehicle(lines.get(i));
                             vehicles.add(v);
                             List<draw_map> part = new ArrayList<>();
@@ -96,6 +97,7 @@ public class controller {
                 for(int i = 0; i < vehicles.size(); i++){
                     vehicles.get(i).move(var_time_speed);
                 }
+                lastTick = time;
                 time = time.plusSeconds(var_time_speed);
             }
         }, 0, 1000);
