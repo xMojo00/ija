@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader load = new FXMLLoader(getClass().getResource("/layout.fxml"));
+        primaryStage.setTitle("Simulace hromadne dopravy");
         BorderPane root = load.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -28,8 +30,8 @@ public class main extends Application {
         List<Stop> stop_list = parser.get_stops();
         List<Street> street_list = parser.get_streets(stop_list);
         List<Line> lines_list = parser.get_lines(stop_list);
-
         List<draw_map> objects = new ArrayList<>();
+        List<Vehicle> vehicles_list = new ArrayList<>();
 
 
         for (Street s: street_list) {
@@ -45,12 +47,30 @@ public class main extends Application {
                 shape.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        System.out.println(s.getId());
+                        my_controller.setInfo_panel_street(s);
                     }
                 });
             }
         }
 
+        for (Stop stop : stop_list) {
+            stop.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    my_controller.setInfo_panel_stop(stop);
+                }
+            });
+
+        }
+
+        my_controller.set_time_button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                my_controller.setTo_user_time();
+            }
+        });
+
         my_controller.start_timer(lines_list);
+
     }
 }

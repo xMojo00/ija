@@ -11,6 +11,7 @@ public class Vehicle implements draw_map{
     private Coordinate destination;
     private List<Shape> bus;
     private int index = 1;
+    private Shape my_shape;
 
     static Vehicle defaultVehicle(Line id){
         return new Vehicle(id);
@@ -28,6 +29,7 @@ public class Vehicle implements draw_map{
 
         bus = new ArrayList<>();
         bus.add(new Circle(0,0, 8, Color.BLUE));
+        this.my_shape = bus.get(bus.size() - 1);
     }
 
     boolean is_in_end() {
@@ -79,6 +81,14 @@ public class Vehicle implements draw_map{
 
     public Coordinate get_actual_position(){
         return this.actual_position;
+    }
+
+    public Shape getMy_shape(){
+        return my_shape;
+    }
+
+    public Line getLine(){
+        return this.line;
     }
 
     @Override

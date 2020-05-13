@@ -1,7 +1,5 @@
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +22,10 @@ public class Street implements draw_map{
 
     public int getId() {
         return this.street_id;
+    }
+
+    public String get_street_name() {
+        return this.street_name;
     }
 
     public List<Coordinate> getCoordinates() {
@@ -51,14 +53,9 @@ public class Street implements draw_map{
         List<Shape> tmp_list = new ArrayList<Shape>();
         int counter = 0;
         while (counter != co.size() - 1) {
-            /////debug
-            Text t = new Text((co.get(counter).getX() + co.get(counter+1).getX()) / 2, (co.get(counter).getY() + co.get(counter+1).getY()) /2+10, street_name);
-            t.setFont(Font.font("Verdana", 4));
-            tmp_list.add(t);
-            ////
-            tmp_list.add(new Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter+1).getX(), co.get(counter+1).getY()));
-            this.my_shape.add(tmp_list.get(tmp_list.size()-1));
-            tmp_list.get(tmp_list.size()-1).setStrokeWidth(1.5);
+            tmp_list.add(new Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter + 1).getX(), co.get(counter + 1).getY()));
+            this.my_shape.add(tmp_list.get(tmp_list.size() - 1));
+            tmp_list.get(tmp_list.size() - 1).setStrokeWidth(1.5);
             counter++;
         }
         return tmp_list;

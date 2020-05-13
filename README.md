@@ -7,4 +7,5 @@
 - Nevykreslovani rohu
 - Debug vypis ulic + stopek
 - informace stopky + linka
+- nastaveni casu
 - mravenec

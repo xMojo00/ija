@@ -22,6 +22,10 @@ public class Line {
         return this.stops.get(index);
     }
 
+    public List<Stop> get_stops() {
+        return this.stops;
+    }
+
     public int stop_count() {
         return stops.size();
     }
@@ -30,7 +34,7 @@ public class Line {
         return this.start_times;
     }
 
-    public int get_line_id(){
+    public int getLine_id(){
         return this.line_id;
     }
 
@@ -40,5 +44,9 @@ public class Line {
 
     public Coordinate last_stop(){
         return this.stops.get(stops.size()-1).get_coordinates();
+    }
+
+    public String getName(){
+        return this.name;
     }
 }

@@ -1,8 +1,10 @@
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.time.LocalTime;
@@ -22,7 +24,31 @@ public class controller {
     private Pane map;
 
     @FXML
+    private AnchorPane info_panel;
+
+    @FXML
     Label watch;
+
+    @FXML
+    Label name;
+
+    @FXML
+    Label stops;
+
+    @FXML
+    TextArea text;
+
+    @FXML
+    Button set_time_button;
+
+    @FXML
+    TextField hours;
+
+    @FXML
+    TextField minutes;
+
+    @FXML
+    TextField seconds;
 
     @FXML
     Slider time_speed_slider;
@@ -30,7 +56,7 @@ public class controller {
     @FXML
     private void zoom(ScrollEvent event){
         event.consume();
-
+        System.out.println(event.getDeltaY());
         if(event.getDeltaY() > 0){
             map.setScaleX(1.1 * map.getScaleX());
             map.setScaleY(1.1 * map.getScaleY());
@@ -44,7 +70,6 @@ public class controller {
     @FXML
     private void speed_change(){
         var_time_speed = (int) time_speed_slider.getValue();
-        System.out.println(var_time_speed);
     }
 
     public void draw_parts(List<draw_map> part){
@@ -78,6 +103,12 @@ public class controller {
                             for(draw_map draw_map : part){
                                 Platform.runLater(() -> map.getChildren().addAll(draw_map.draw()));
                             }
+                            v.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    setInfo_panel_vehicle(v);
+                                }
+                            });
                         }
                     }
                 }
@@ -96,8 +127,19 @@ public class controller {
                 for(int i = 0; i < vehicles.size(); i++){
                     vehicles.get(i).move(var_time_speed);
                 }
+
                 lastTick = time;
                 time = time.plusSeconds(var_time_speed);
+
+                /*for (Vehicle vehicle : vehicles) {
+                    System.out.println("asd");
+                    vehicle.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            setInfo_panel_vehicle(vehicle);
+                        }
+                    });
+                }*/
             }
         }, 0, 1000);
     }
@@ -105,5 +147,47 @@ public class controller {
     public void set_time(){
         String time_to_text = String.format("%02d:%02d:%02d", time.getHour(),time.getMinute(),time.getSecond());
         Platform.runLater(() -> watch.setText(time_to_text));
+    }
+
+    public void setInfo_panel_street(Street street){
+        String stops_string = "";
+        name.setText(street.get_street_name());
+        for (Stop stop : street.getStops()) {
+            stops_string = stops_string + stop.getStop_name() + "\n";
+        }
+        stops.setText("Zastávky:");
+        text.setText(stops_string);
+    }
+
+    public void setInfo_panel_stop(Stop stop){
+        String stops_string = "";
+
+        name.setText(stop.getStop_name());
+        /*for (Stop stop : street.getStops()) {
+            stops_string = stops_string + stop.getStop_name() + "\n";
+        }*/
+        stops.setText("Jízdní řád:");
+        text.setText(stops_string);
+    }
+
+    public void setInfo_panel_vehicle(Vehicle vehicle){
+        String stops_string = "";
+
+        name.setText(vehicle.getLine().getName());
+        for (Stop stop : vehicle.getLine().get_stops()) {
+            stops_string = stops_string + stop.getStop_name() + "\n";
+        }
+        stops.setText("Zastavky:");
+        text.setText(stops_string);
+    }
+
+    public void setTo_user_time(){
+        if((hours.getText().matches("^[0-1]?[0-9]$|^[2]?[0-3]$"))){
+            if(minutes.getText().matches("^[0-5]?[0-9]$")){
+                if(seconds.getText().matches("^[0-5]?[0-9]$")){
+                    time = LocalTime.of(Integer.parseInt(hours.getText()),Integer.parseInt(minutes.getText()),Integer.parseInt(seconds.getText()));
+                }
+            }
+        }
     }
 }
