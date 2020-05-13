@@ -9,7 +9,7 @@ public class Stop implements draw_map{
     private int stop_id;         //street id
     private String stop_name;   //ulice
     private Coordinate xy;          //souradnice zastavky
-    private Boolean is_corner = false;
+    private Boolean corner = false;
     private Shape my_shape;
 
     public Coordinate get_coordinates(){
@@ -23,6 +23,7 @@ public class Stop implements draw_map{
     public Stop(int id, String name, Coordinate c){
         this.stop_id = id;
         this.stop_name = name;
+        if (name.substring(0,1).compareTo("#") == 0) corner = true;
         this.xy = c;
     }
 
@@ -34,10 +35,14 @@ public class Stop implements draw_map{
         return my_shape;
     }
 
+    public boolean is_corner() {
+        return this.corner;
+    }
+
     @Override
     public List<Shape> draw(){
         List<Shape> tmp_list = new ArrayList<Shape>();
-        tmp_list.add(new Circle(xy.getX(),xy.getY(), 1.5, Color.RED));
+        tmp_list.add(new Circle(xy.getX(),xy.getY(), 6, Color.RED));
         this.my_shape = tmp_list.get(tmp_list.size() - 1);
         return tmp_list;
     }

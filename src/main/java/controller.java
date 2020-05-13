@@ -56,7 +56,6 @@ public class controller {
     @FXML
     private void zoom(ScrollEvent event){
         event.consume();
-        System.out.println(event.getDeltaY());
         if(event.getDeltaY() > 0){
             map.setScaleX(1.1 * map.getScaleX());
             map.setScaleY(1.1 * map.getScaleY());

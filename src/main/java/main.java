@@ -38,7 +38,9 @@ public class main extends Application {
             objects.add(s);
         }
         for (Stop s: stop_list) {
-            objects.add(s);
+            if (!(s.is_corner())) {
+                objects.add(s);
+            }
         }
         my_controller.draw_parts(objects);
 
@@ -54,13 +56,14 @@ public class main extends Application {
         }
 
         for (Stop stop : stop_list) {
-            stop.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    my_controller.setInfo_panel_stop(stop);
-                }
-            });
-
+            if(!(stop.is_corner())) {
+                stop.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        my_controller.setInfo_panel_stop(stop);
+                    }
+                });
+            }
         }
 
         my_controller.set_time_button.setOnAction(new EventHandler<ActionEvent>() {
