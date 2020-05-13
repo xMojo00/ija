@@ -15,6 +15,10 @@ public class Stop implements draw_map{
         return this.xy;
     }
 
+    public int get_id() {
+        return this.stop_id;
+    }
+
     public Stop(int id, String name, Coordinate c){
         this.stop_id = id;
         this.stop_name = name;

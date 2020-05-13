@@ -24,8 +24,8 @@ public class main extends Application {
         parseInputData parser = new parseInputData();
         controller my_controller = load.getController();
         List<Stop> stop_list = parser.get_stops();
-        List<Street> street_list = parser.get_streets();
-        List<Line> lines_list = parser.get_lines();
+        List<Street> street_list = parser.get_streets(stop_list);
+        List<Line> lines_list = parser.get_lines(stop_list);
 
         List<draw_map> objects = new ArrayList<>();
 
@@ -35,27 +35,8 @@ public class main extends Application {
         for (Stop s: stop_list) {
             objects.add(s);
         }
-
         my_controller.draw_parts(objects);
 
-
-        List<Line> Lines = new ArrayList<>();
-        List<LocalTime> casy = new ArrayList<>();
-        LocalTime cas1 = LocalTime.of(0,0,0);
-        casy.add(cas1);
-        cas1 = LocalTime.of(0,0,5);
-        casy.add(cas1);
-        cas1 = LocalTime.of(0,0,10);
-        casy.add(cas1);
-        Line l1 = Line.defaltLine("c. 23", 1, casy, stop_list);
-        Lines.add(l1);
-
-        List<LocalTime> casy2 = new ArrayList<>();
-        LocalTime cas2 = LocalTime.of(0,0,5);
-        casy.add(cas2);
-        Line l2 = Line.defaltLine("c. 23", 1, casy2, stop_list);
-        Lines.add(l2);
-
-        my_controller.start_timer(Lines);
+        my_controller.start_timer(lines_list);
     }
 }
