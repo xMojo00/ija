@@ -42,8 +42,8 @@ public class parseInputData {
             ArrayList<Coordinate> coordinates = new ArrayList<>();
             while (line.substring(0,1).compareTo(";") != 0) {
 
-                int x = Integer.parseInt(line.substring(line.indexOf("[")+1,line.indexOf(",")));
-                int y = Integer.parseInt(line.substring(line.indexOf(",")+1,line.indexOf("]")));
+                double x = Double.parseDouble(line.substring(line.indexOf("[")+1,line.indexOf(",")));
+                double y = Double.parseDouble(line.substring(line.indexOf(",")+1,line.indexOf("]")));
                 line = line.substring(line.indexOf("]")+1);
                 Coordinate coord = new Coordinate(x,y);
                 coordinates.add(coord);
@@ -81,8 +81,8 @@ public class parseInputData {
             line = line.substring(line.indexOf(";")+1);
             String name = line.substring(0,line.indexOf(";"));
             line = line.substring(line.indexOf(";")+1);
-            int x = Integer.parseInt(line.substring(line.indexOf("[")+1,line.indexOf(",")));
-            int y = Integer.parseInt(line.substring(line.indexOf(",")+1,line.indexOf("]")));
+            double x = Double.parseDouble(line.substring(line.indexOf("[")+1,line.indexOf(",")));
+            double y = Double.parseDouble(line.substring(line.indexOf(",")+1,line.indexOf("]")));
             Coordinate coord = new Coordinate(x,y);
             data = data.substring(data.indexOf("\n")+1);
             Stop return_stop = new Stop(id, name, coord);

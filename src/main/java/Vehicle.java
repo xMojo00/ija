@@ -27,7 +27,7 @@ public class Vehicle implements draw_map{
         this.destination = id.get_stop(index).get_coordinates();
 
         bus = new ArrayList<>();
-        bus.add(new Circle(0,0, 2, Color.BLUE));
+        bus.add(new Circle(0,0, 8, Color.BLUE));
     }
 
     boolean is_in_end() {

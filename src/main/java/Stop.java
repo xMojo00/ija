@@ -30,7 +30,7 @@ public class Stop implements draw_map{
     @Override
     public List<Shape> draw(){
         List<Shape> tmp_list = new ArrayList<Shape>();
-        Text t = new Text(xy.getX(), xy.getY(), stop_name);
+        Text t = new Text(xy.getX(), xy.getY()+10, stop_name);
         t.setFont(Font.font("Verdana", 4));
         tmp_list.add(t);
         tmp_list.add(new Circle(xy.getX(),xy.getY(), 1.5, Color.RED));

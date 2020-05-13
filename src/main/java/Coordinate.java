@@ -11,7 +11,7 @@ public class Coordinate implements Cloneable{
         return this.y;
     }
 
-    public static Coordinate create(int x, int y) {
+    public static Coordinate create(double x, double y) {
         if(x < 0){
             return null;
         }
@@ -21,7 +21,7 @@ public class Coordinate implements Cloneable{
         return new Coordinate(x,y);
     }
 
-    public Coordinate (int x, int y){
+    public Coordinate (double x, double y){
         this.x = x;
         this.y = y;
     }
