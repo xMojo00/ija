@@ -60,12 +60,12 @@ public class controller {
     private void zoom(ScrollEvent event){
         event.consume();
         if(event.getDeltaY() > 0){
-            map.setScaleX(1.1 * map.getScaleX());
-            map.setScaleY(1.1 * map.getScaleY());
+            Platform.runLater(() -> map.setScaleX(1.1 * map.getScaleX()));
+            Platform.runLater(() -> map.setScaleY(1.1 * map.getScaleY()));
         }
         else{
-            map.setScaleX(0.9 * map.getScaleX());
-            map.setScaleY(0.9 * map.getScaleY());
+            Platform.runLater(() -> map.setScaleX(0.9 * map.getScaleX()));
+            Platform.runLater(() -> map.setScaleY(0.9 * map.getScaleY()));
         }
     }
 

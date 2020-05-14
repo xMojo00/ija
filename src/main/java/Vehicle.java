@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -100,8 +101,8 @@ public class Vehicle implements draw_map{
 
 
         for (Shape shape : bus) {
-            shape.setLayoutX(this.actual_position.getX());
-            shape.setLayoutY(this.actual_position.getY());
+            Platform.runLater(() -> shape.setLayoutX(this.actual_position.getX()));
+            Platform.runLater(() -> shape.setLayoutY(this.actual_position.getY()));
         }
 
     }
