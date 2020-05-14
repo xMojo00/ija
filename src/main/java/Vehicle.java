@@ -23,6 +23,7 @@ public class Vehicle implements draw_map{
         try {
             this.actual_position = (Coordinate) id.start_stop().clone();
         } catch (CloneNotSupportedException e) {
+            System.out.println("error with cloning");
         }
 
         this.destination = id.get_stop(index).get_coordinates();
@@ -38,44 +39,63 @@ public class Vehicle implements draw_map{
 
     public void move(int multiplier) {
 
-        if (index >= line.stop_count()) return;
-        if (actual_position.x == destination.x && actual_position.y == destination.y) {
-            index++;
+        while (true) {
+
+            double distance_to_travel;
+            double x_remain;
+            double y_remain;
+
             if (index >= line.stop_count()) return;
-            destination = line.get_stop(index).get_coordinates();
+            if (actual_position.x == destination.x && actual_position.y == destination.y) {
+                index++;
+                if (index >= line.stop_count()) return;
+                destination = line.get_stop(index).get_coordinates();
+            }
+
+            double x_distance = Math.abs(this.actual_position.x - this.destination.x);
+            double y_distance = Math.abs(this.actual_position.y - this.destination.y);
+            double x_share = Math.abs(x_distance / (x_distance + y_distance));
+            double y_share = Math.abs(y_distance / (x_distance + y_distance));
+
+            double missing_to_one = 1 / (Math.pow(x_share, 2) + Math.pow(y_share, 2));
+            x_share = Math.sqrt(x_share * x_share * missing_to_one);
+            y_share = Math.sqrt(y_share * y_share * missing_to_one);
+
+            x_share *= multiplier;
+            y_share *= multiplier;
+
+            if ((this.actual_position.x > this.destination.x)) {
+                this.actual_position.x -= (x_share);
+            } else {
+                this.actual_position.x += (x_share);
+            }
+
+            if ((this.actual_position.y > this.destination.y)) {
+                this.actual_position.y -= (y_share);
+            } else {
+                this.actual_position.y += (y_share);
+            }
+
+            if (Math.abs(x_distance) < Math.abs(x_share)) {
+                this.actual_position.x = this.destination.x;
+                x_remain = Math.abs(x_share) - Math.abs(x_distance);
+            } else {
+                x_remain = 0;
+            }
+            if (Math.abs(y_distance) < Math.abs(y_share)) {
+                this.actual_position.y = this.destination.y;
+                y_remain = Math.abs(y_share) - Math.abs(y_distance);
+            } else {
+                y_remain = 0;
+            }
+
+            distance_to_travel = Math.sqrt(x_remain * x_remain + y_remain * y_remain);
+            if (distance_to_travel < 0.5) {
+                break;
+            } else {
+                multiplier = (int) distance_to_travel;
+            }
         }
-
-        double x_distance = Math.abs(this.actual_position.x - this.destination.x);
-        double y_distance = Math.abs(this.actual_position.y - this.destination.y);
-        double x_share = Math.abs(x_distance / (x_distance + y_distance));
-        double y_share = Math.abs(y_distance / (x_distance + y_distance));
-
-        double missing_to_one = 1 / (Math.pow(x_share,2) + Math.pow(y_share,2));
-        x_share = Math.sqrt(x_share * x_share * missing_to_one);
-        y_share = Math.sqrt(y_share * y_share * missing_to_one);
-
-        x_share *= multiplier;
-        y_share *= multiplier;
-
-        if ((this.actual_position.x > this.destination.x)) {
-            this.actual_position.x -= (x_share);
-        } else {
-            this.actual_position.x += (x_share);
-        }
-
-        if ((this.actual_position.y > this.destination.y)) {
-            this.actual_position.y -= (y_share);
-        } else {
-            this.actual_position.y += (y_share);
-        }
-
-        if (Math.abs(x_distance) < Math.abs(x_share)) {
-            this.actual_position.x = this.destination.x;
-        }
-        if (Math.abs(y_distance) < Math.abs(y_share)) {
-            this.actual_position.y = this.destination.y;
-        }
-
 
 
 
