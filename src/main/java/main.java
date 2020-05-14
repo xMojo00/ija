@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,35 @@ public class main extends Application {
         List<Line> lines_list = parser.get_lines(stop_list);
         List<draw_map> objects = new ArrayList<>();
 
+        //// jizdni rady
+
+        for (Line line: lines_list) {
+            List<Integer> visited = new ArrayList<>();
+            Coordinate old = line.get_stop(0).get_coordinates();
+            Coordinate current =  line.get_stop(0).get_coordinates();
+            int delay = 0;
+                for (Stop stops: line.get_stops()) {
+                    BusTimetable timetable = new BusTimetable(line.getName());
+                    current = stops.get_coordinates();
+
+
+                    double x_distance = Math.pow(Math.abs(old.x - current.x),2);
+                    double y_distance = Math.pow(Math.abs(old.y - current.y),2);
+                    double distance = Math.sqrt(x_distance + y_distance);
+                    delay = (int) ((delay * 1.0004) + distance);
+
+                    old = stops.get_coordinates();
+                    for (LocalTime t : line.get_start_times()) {
+                        timetable.addTime(t.plusSeconds(delay));
+                    }
+                    if (!visited.contains(stops.get_id())) {
+                        stops.add_timetable(timetable);
+                        visited.add(stops.get_id());
+                    }
+                }
+        }
+
+        ////
 
         for (Street s: street_list) {
             objects.add(s);

@@ -11,6 +11,7 @@ public class Stop implements draw_map{
     private Coordinate xy;          //souradnice zastavky
     private Boolean corner = false;
     private Shape my_shape;
+    private ArrayList<BusTimetable> timetables = new ArrayList<>();
 
     public Coordinate get_coordinates(){
         return this.xy;
@@ -25,6 +26,14 @@ public class Stop implements draw_map{
         this.stop_name = name;
         if (name.substring(0,1).compareTo("#") == 0) corner = true;
         this.xy = c;
+    }
+
+    public void add_timetable(BusTimetable t){
+        timetables.add(t);
+    }
+
+    public  ArrayList<BusTimetable> get_timetables() {
+        return timetables;
     }
 
     public String getStop_name(){

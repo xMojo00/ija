@@ -1,6 +1,7 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,15 @@ public class Vehicle implements draw_map{
 
         double x_distance = Math.abs(this.actual_position.x - this.destination.x);
         double y_distance = Math.abs(this.actual_position.y - this.destination.y);
-        double x_share = Math.abs(x_distance / (x_distance + y_distance) * multiplier);
-        double y_share = Math.abs(y_distance / (x_distance + y_distance) * multiplier);
+        double x_share = Math.abs(x_distance / (x_distance + y_distance));
+        double y_share = Math.abs(y_distance / (x_distance + y_distance));
+
+        double missing_to_one = 1 / (Math.pow(x_share,2) + Math.pow(y_share,2));
+        x_share = Math.sqrt(x_share * x_share * missing_to_one);
+        y_share = Math.sqrt(y_share * y_share * missing_to_one);
+
+        x_share *= multiplier;
+        y_share *= multiplier;
 
         if ((this.actual_position.x > this.destination.x)) {
             this.actual_position.x -= (x_share);
@@ -96,3 +104,4 @@ public class Vehicle implements draw_map{
         return bus;
     }
 }
+

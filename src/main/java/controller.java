@@ -164,7 +164,7 @@ public class controller {
                 stops_string = stops_string + stop.getStop_name() + "\n";
             }
         }
-        stops.setText("Zastávky:");
+        stops.setText("Zastavky:");
         text.setText(stops_string);
     }
 
@@ -172,10 +172,12 @@ public class controller {
         String stops_string = "";
 
         name.setText(stop.getStop_name());
-        /*for (Stop stop : street.getStops()) {
-            stops_string = stops_string + stop.getStop_name() + "\n";
-        }*/
-        stops.setText("Jízdní řád:");
+
+        for(BusTimetable t: stop.get_timetables()){
+            stops_string = stops_string + t.getLine() + "\n" + t.getTime();
+        }
+
+        stops.setText("Jizdni rad:");
         text.setText(stops_string);
     }
 
@@ -227,7 +229,7 @@ public class controller {
             }
 
             for (int i = 0; i < vehicles.size(); i++) {
-                vehicles.get(i).move(var_time_speed);
+                vehicles.get(i).move(1);
             }
 
             tmp_time = tmp_time.plusSeconds(1);
