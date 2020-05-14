@@ -201,6 +201,18 @@ public class controller {
             map.getChildren().removeAll(vehicle.getLine().getMy_shape());
             mark_line.clear();
         }
+
+        for(int i = 0; i < vehicles.size(); i++) {
+            List<draw_map> part = new ArrayList<>();
+            part.add(vehicles.get(i));
+            for (draw_map draw_map : part) {
+                Platform.runLater(() -> map.getChildren().removeAll(draw_map.draw()));
+            }
+            for (draw_map draw_map : part) {
+                Platform.runLater(() -> map.getChildren().addAll(draw_map.draw()));
+            }
+
+        }
         stops.setText("Zastavky:");
         text.setText(stops_string);
     }
