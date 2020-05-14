@@ -40,6 +40,7 @@ public class Stop implements draw_map{
         return this.stop_name;
     }
 
+
     public Shape getMy_shape(){
         return my_shape;
     }

@@ -21,6 +21,7 @@ public class controller {
     private List<Line> lines;
     private int var_time_speed = 1;
     private Timer timer;
+    private List<draw_map> mark_line = new ArrayList<>();
 
     @FXML
     private Pane map;
@@ -183,12 +184,22 @@ public class controller {
 
     public void setInfo_panel_vehicle(Vehicle vehicle){
         String stops_string = "";
-
         name.setText(vehicle.getLine().getName());
         for (Stop stop : vehicle.getLine().get_stops()) {
             if(!stop.is_corner()) {
                 stops_string = stops_string + stop.getStop_name() + "\n";
             }
+        }
+        if(mark_line.size() < 1) {
+            mark_line.add(vehicle.getLine());
+            for (draw_map draw_map : mark_line) {
+                map.getChildren().addAll(draw_map.draw());
+            }
+        }
+        else{
+            mark_line.add(vehicle.getLine());
+            map.getChildren().removeAll(vehicle.getLine().getMy_shape());
+            mark_line.clear();
         }
         stops.setText("Zastavky:");
         text.setText(stops_string);
