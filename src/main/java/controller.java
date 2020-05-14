@@ -251,6 +251,12 @@ public class controller {
             part.add(vehicle);
             for(draw_map draw_map : part){
                 map.getChildren().addAll(draw_map.draw());
+                vehicle.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        setInfo_panel_vehicle(vehicle);
+                    }
+                });
             }
         }
     }
