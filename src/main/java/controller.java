@@ -18,7 +18,9 @@ public class controller {
     private LocalTime lastTick = LocalTime.of(0,0,0);
     private List<draw_map> part = new ArrayList<>();
     private List<Vehicle> vehicles = new ArrayList<>();
+    private List<Line> lines;
     private int var_time_speed = 1;
+    private Timer timer;
 
     @FXML
     private Pane map;
@@ -97,8 +99,12 @@ public class controller {
         }
     }
 
-    public void start_timer(List<Line> lines) {
-        Timer timer = new Timer(true);
+    public void setLines(List<Line> line){
+        this.lines = line;
+    }
+
+    public void start_timer() {
+        timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -141,16 +147,6 @@ public class controller {
 
                 lastTick = time;
                 time = time.plusSeconds(var_time_speed);
-
-                /*for (Vehicle vehicle : vehicles) {
-                    System.out.println("asd");
-                    vehicle.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            setInfo_panel_vehicle(vehicle);
-                        }
-                    });
-                }*/
             }
         }, 0, 1000);
     }
@@ -164,7 +160,9 @@ public class controller {
         String stops_string = "";
         name.setText(street.get_street_name());
         for (Stop stop : street.getStops()) {
-            stops_string = stops_string + stop.getStop_name() + "\n";
+            if(!stop.is_corner()) {
+                stops_string = stops_string + stop.getStop_name() + "\n";
+            }
         }
         stops.setText("Zastávky:");
         text.setText(stops_string);
@@ -186,7 +184,9 @@ public class controller {
 
         name.setText(vehicle.getLine().getName());
         for (Stop stop : vehicle.getLine().get_stops()) {
-            stops_string = stops_string + stop.getStop_name() + "\n";
+            if(!stop.is_corner()) {
+                stops_string = stops_string + stop.getStop_name() + "\n";
+            }
         }
         stops.setText("Zastavky:");
         text.setText(stops_string);
@@ -198,7 +198,46 @@ public class controller {
                 if(seconds.getText().matches("^[0-5]?[0-9]$")){
                     remove_all_vehicles();
                     time = LocalTime.of(Integer.parseInt(hours.getText()),Integer.parseInt(minutes.getText()),Integer.parseInt(seconds.getText()));
+                    timer.cancel();
+                    setTransport_by_time();
+                    start_timer();
                 }
+            }
+        }
+    }
+
+    public void setTransport_by_time(){
+        LocalTime tmp_time = LocalTime.of(time.getHour(),time.getMinute(),time.getSecond());
+        tmp_time = tmp_time.minusHours(2);
+        while(time.compareTo(tmp_time) != 0) {
+            for (int i = 0; i < lines.size(); i++) {
+                List<LocalTime> start_times = lines.get(i).get_start_times();
+                for (LocalTime start_time : start_times) {
+                    if(start_time.getHour() == tmp_time.getHour() && start_time.getMinute() == tmp_time.getMinute() && start_time.getSecond() == tmp_time.getSecond()) {
+                        Vehicle v = Vehicle.defaultVehicle(lines.get(i));
+                        vehicles.add(v);
+                    }
+                }
+            }
+
+            for (int i = 0; i < vehicles.size(); i++) {
+                if (vehicles.get(i).is_in_end()) {
+                    vehicles.remove(i);
+                }
+            }
+
+            for (int i = 0; i < vehicles.size(); i++) {
+                vehicles.get(i).move(var_time_speed);
+            }
+
+            tmp_time = tmp_time.plusSeconds(1);
+        }
+        lastTick = tmp_time;
+        for (Vehicle vehicle : vehicles) {
+            List<draw_map> part = new ArrayList<>();
+            part.add(vehicle);
+            for(draw_map draw_map : part){
+                map.getChildren().addAll(draw_map.draw());
             }
         }
     }

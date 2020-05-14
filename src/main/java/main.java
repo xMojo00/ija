@@ -72,6 +72,7 @@ public class main extends Application {
             }
         });
 
-        my_controller.start_timer(lines_list);
+        my_controller.setLines(lines_list);
+        my_controller.start_timer();
     }
 }
