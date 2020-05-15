@@ -18,7 +18,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class controller {
-
     private LocalTime time = LocalTime.now().withNano(0);
     private LocalTime lastTick = LocalTime.now().withNano(0);
     private List<Vehicle> vehicles = new ArrayList<>();
@@ -61,6 +60,10 @@ public class controller {
     @FXML
     Slider time_speed_slider;
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     private void zoom(ScrollEvent event){
         event.consume();
@@ -74,6 +77,9 @@ public class controller {
         }
     }
 
+    /**
+     * Nastavuje hodnotu proměnné na hodnotu nastavenou na posuvníku.
+     */
     @FXML
     private void speed_change(){
         var_time_speed = (int) time_speed_slider.getValue();
@@ -85,7 +91,9 @@ public class controller {
         }
     }
 
-
+    /**
+     * Odstraní všechna vozidla z mapy.
+     */
     public void remove_all_vehicles(){
         int size = vehicles.size();
         for(int i = 0; i < size; i++) {
@@ -98,10 +106,17 @@ public class controller {
         }
     }
 
+    /**
+     * Nastaví linky.
+     * @param line Seznam linek.
+     */
     public void setLines(List<Line> line){
         this.lines = line;
     }
 
+    /**
+     * Spustí časovač a začne vytvářet vozidla podle čassů jejich výjezdů. Po příjezdu na poslední zastávku je i odstraní.
+     */
     public void start_timer() {
         timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -150,14 +165,17 @@ public class controller {
         }, 0, 1000);
     }
 
+    /**
+     * Nastaví a zobrazí čas v aplikaci.
+     */
     public void set_time(){
         String time_to_text = String.format("%02d:%02d:%02d", time.getHour(),time.getMinute(),time.getSecond());
         Platform.runLater(() -> watch.setText(time_to_text));
     }
 
     /**
-     *
-     * @param street
+     * Zobrazí informace o ulici.
+     * @param street Objekt ulice.
      */
     public void setInfo_panel_street(Street street){
         StringBuilder stops_string = new StringBuilder();
@@ -172,8 +190,8 @@ public class controller {
     }
 
     /**
-     *
-     * @param stop
+     * Zobrazí informace o zastávce.
+     * @param stop Objekt zastávky.
      */
     public void setInfo_panel_stop(Stop stop){
         StringBuilder stops_string = new StringBuilder();
@@ -189,8 +207,8 @@ public class controller {
     }
 
     /**
-     *
-     * @param vehicle
+     * Zobrazí informace o vozidle.
+     * @param vehicle Objekt vozidla.
      */
     public void setInfo_panel_vehicle(Vehicle vehicle){
         StringBuilder stops_string = new StringBuilder();
@@ -238,7 +256,10 @@ public class controller {
         stops.setText("Zastavky:");
         text.setText(stops_string.toString());
     }
-    
+
+    /**
+     * Nastaví čas na čas zadaný uživatelem.
+     */
     public void setTo_user_time(){
         if((hours.getText().matches("^[0-1]?[0-9]$|^[2]?[0-3]$"))){
             if(minutes.getText().matches("^[0-5]?[0-9]$")){
@@ -253,6 +274,9 @@ public class controller {
         }
     }
 
+    /**
+     * Nastaví dopravní situaci, tak aby odpovídala času.
+     */
     public void setTransport_by_time() {
         LocalTime tmp_time = LocalTime.of(time.getHour(),time.getMinute(),time.getSecond());
         tmp_time = tmp_time.minusHours(2);

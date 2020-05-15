@@ -43,6 +43,10 @@ public class Vehicle implements draw_map{
         this.my_shape = bus.get(bus.size() - 1);
     }
 
+    /**
+     * Vrací pravdivostí hodnotu, jestli se vozidlo nachází na poslední zastávce.
+     * @return PRavdivostní hodnota.
+     */
     boolean is_in_end() {
         return (index >= line.stop_count());
     }
@@ -115,22 +119,34 @@ public class Vehicle implements draw_map{
 
     }
 
+    /**
+     * Nastaví čas výjezdu vozidla.
+     * @param time Čas výjezdu.
+     */
     public void set_start_time(LocalTime time) {
         start_time = time;
     }
 
+    /**
+     * Vrací čas výjezdu.
+     * @return Čas výjezdu.
+     */
     public LocalTime get_start_time() {
         return start_time;
     }
 
-    public Coordinate get_actual_position(){
-        return this.actual_position;
-    }
-
+    /**
+     * Vrací seznam objektů typu tvar.
+     * @return Seznam objektů typu tvar.
+     */
     public Shape getMy_shape(){
         return my_shape;
     }
 
+    /**
+     * Vrací objekt linky vozidla.
+     * @return Objekt linky.
+     */
     public Line getLine(){
         return this.line;
     }

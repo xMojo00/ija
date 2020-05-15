@@ -19,11 +19,11 @@ public class Street implements draw_map{
     private List<Shape> my_shape = new ArrayList<>();
 
     /**
-     * Vytvoří
-     * @param id
-     * @param name
-     * @param coordinates
-     * @param stops
+     * Vytvoří novou ulici.
+     * @param id ID ulice.
+     * @param name Název ulice.
+     * @param coordinates List souřadnic ulice.
+     * @param stops List zastávek na ulici.
      */
     public Street(int id, String name, ArrayList<Coordinate> coordinates, ArrayList<Stop> stops) {
        this.street_id = id;
@@ -32,18 +32,34 @@ public class Street implements draw_map{
        this.stops = stops;
     }
 
+    /**
+     * Vrátí název ulice.
+     * @return Název ulice.
+     */
     public String get_street_name() {
         return this.street_name;
     }
 
+    /**
+     * Vrací list zastávek na ulici.
+     * @return List zastávek.
+     */
     public List<Stop> getStops() {
         return this.stops;
     }
 
+    /**
+     * Vrací seznam objektů typu tvar.
+     * @return Seznam objektů typu tvar.
+     */
     public List<Shape> getMy_shape() {
         return this.my_shape;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Shape> draw(){
         List<Shape> tmp_list = new ArrayList<>();

@@ -5,7 +5,6 @@
 //      information.                                                //
 //////////////////////////////////////////////////////////////////////
 
-
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
@@ -20,6 +19,13 @@ public class Line implements draw_map{
     private List<Stop> stops;
     private List<Shape> my_shape = new ArrayList<>();
 
+    /**
+     * Vytvoří linku.
+     * @param starts List s časy, ve kterých linka vyjíždí.
+     * @param stops List zastávek.
+     * @param name Název linky.
+     * @param line_id ID linky.
+     */
     public Line(List<LocalTime> starts, List<Stop> stops, String name, int line_id) {
         this.name = name;
         this.line_id = line_id;
@@ -27,22 +33,43 @@ public class Line implements draw_map{
         this.stops = stops;
     }
 
+    /**
+     * Vrací seznam objektů typu tvar.
+     * @return Seznam objektů typu tvar.
+     */
     public List<Shape> getMy_shape(){
         return this.my_shape;
     }
 
+    /**
+     * Vrací stopku na pozici indexu.
+     * @param index Pozice stopky v seznamu.
+     * @return Vrací stopku na indexu.
+     */
     public Stop get_stop(int index) {
         return this.stops.get(index);
     }
 
+    /**
+     * Vrací seznam zastávek na lince.
+     * @return Seznam zastávek.
+     */
     public List<Stop> get_stops() {
         return this.stops;
     }
 
+    /**
+     * Vrací velikost seznamu, ve kterém jsou zastávky.
+     * @return
+     */
     public int stop_count() {
         return stops.size();
     }
 
+    /**
+     * Vrací seznam s časy, kdy linka vyjíždí.
+     * @return Seznam s časy.
+     */
     public List<LocalTime> get_start_times(){
         return this.start_times;
     }
@@ -51,6 +78,10 @@ public class Line implements draw_map{
         return this.line_id;
     }
 
+    /**
+     * Vrací souřadnice zastávky, na které lisnka začíná.
+     * @return Souřadnice první zastávky.
+     */
     public Coordinate start_stop(){
         return this.stops.get(0).get_coordinates();
     }
@@ -59,6 +90,10 @@ public class Line implements draw_map{
         return this.stops.get(stops.size()-1).get_coordinates();
     }
 
+    /**
+     * Vrací název zastávky.
+     * @return Název zastávky.
+     */
     public String getName(){
         return this.name;
     }
@@ -71,7 +106,7 @@ public class Line implements draw_map{
                     get_stops().get(i).get_coordinates().getY(),
                     get_stops().get(i+1).get_coordinates().getX(),
                     get_stops().get(i+1).get_coordinates().getY());
-            l.setStrokeWidth(2);
+            l.setStrokeWidth(3);
             l.setStroke(Color.YELLOW);
             my_shape.add(l);
         }

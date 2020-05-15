@@ -20,14 +20,28 @@ public class Stop implements draw_map{
     private Shape my_shape;
     private ArrayList<BusTimetable> timetables = new ArrayList<>();
 
+    /**
+     * Vrací souřadnici na, kterých zastávka leží.
+     * @return Souřadnici zastávky.
+     */
     public Coordinate get_coordinates(){
         return this.xy;
     }
 
+    /**
+     * Vrací ID zastávky.
+     * @return ID zastávky.
+     */
     public int get_id() {
         return this.stop_id;
     }
 
+    /**
+     * Vytváří novou zastávku.
+     * @param id ID zastávky.
+     * @param name Název zastávky.
+     * @param c Souřadnice zastávky.
+     */
     public Stop(int id, String name, Coordinate c){
         this.stop_id = id;
         this.stop_name = name;
@@ -35,23 +49,42 @@ public class Stop implements draw_map{
         this.xy = c;
     }
 
+    /**
+     * Vloží objekt t do seznamu timetable.
+     * @param t Objekt reprezentující časy příjezdů na zastávku.
+     */
     public void add_timetable(BusTimetable t){
         timetables.add(t);
     }
 
-    public  ArrayList<BusTimetable> get_timetables() {
+    /**
+     * Vrací seznam příjezdů linek na stopce.
+     * @return Seznam příjezdů linek
+     */
+    public ArrayList<BusTimetable> get_timetables() {
         return timetables;
     }
 
+    /**
+     * Vrací název zastávky.
+     * @return Název zastávky.
+     */
     public String getStop_name(){
         return this.stop_name;
     }
 
-
+    /**
+     * Vrací seznam objektů typu tvar.
+     * @return Seznam objektů typu tvar.
+     */
     public Shape getMy_shape(){
         return my_shape;
     }
 
+    /**
+     * Vrací pravdivostní hodnotu jestli se jedná o roh.
+     * @return Pravdivostní hodnotu.
+     */
     public boolean is_corner() {
         return this.corner;
     }

@@ -24,16 +24,6 @@ public class Coordinate implements Cloneable{
         return this.y;
     }
 
-    public static Coordinate create(double x, double y) {
-        if(x < 0){
-            return null;
-        }
-        if(y < 0){
-            return null;
-        }
-        return new Coordinate(x,y);
-    }
-
     /**
      * Vytváří novou souřadnici.
      * @param x Hodnota x osy.
@@ -42,10 +32,6 @@ public class Coordinate implements Cloneable{
     public Coordinate (double x, double y){
         this.x = x;
         this.y = y;
-    }
-
-    public String print(){
-        return x + "," + y;
     }
 
     /**
