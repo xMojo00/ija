@@ -49,6 +49,6 @@
       <Label fx:id="watch" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <Slider fx:id="time_speed_slider" majorTickUnit="1.0" max="30.0" min="0.0" minorTickCount="2" onMouseReleased="#speed_change" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" BorderPane.alignment="CENTER" />
+      <Slider fx:id="time_speed_slider" majorTickUnit="1.0" max="30.0" min="0.0" minorTickCount="2" onMouseReleased="#speed_change" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-padding: 10;" value="1.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>

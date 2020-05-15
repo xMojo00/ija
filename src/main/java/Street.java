@@ -18,7 +18,13 @@ public class Street implements draw_map{
     private ArrayList<Stop> stops;
     private List<Shape> my_shape = new ArrayList<>();
 
-
+    /**
+     * Vytvoří
+     * @param id
+     * @param name
+     * @param coordinates
+     * @param stops
+     */
     public Street(int id, String name, ArrayList<Coordinate> coordinates, ArrayList<Stop> stops) {
        this.street_id = id;
        this.street_name = name;

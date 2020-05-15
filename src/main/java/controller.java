@@ -18,6 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class controller {
+
     private LocalTime time = LocalTime.now().withNano(0);
     private LocalTime lastTick = LocalTime.now().withNano(0);
     private List<Vehicle> vehicles = new ArrayList<>();
@@ -154,6 +155,10 @@ public class controller {
         Platform.runLater(() -> watch.setText(time_to_text));
     }
 
+    /**
+     *
+     * @param street
+     */
     public void setInfo_panel_street(Street street){
         StringBuilder stops_string = new StringBuilder();
         name.setText(street.get_street_name());
@@ -166,6 +171,10 @@ public class controller {
         text.setText(stops_string.toString());
     }
 
+    /**
+     *
+     * @param stop
+     */
     public void setInfo_panel_stop(Stop stop){
         StringBuilder stops_string = new StringBuilder();
 
@@ -179,6 +188,10 @@ public class controller {
         text.setText(stops_string.toString());
     }
 
+    /**
+     *
+     * @param vehicle
+     */
     public void setInfo_panel_vehicle(Vehicle vehicle){
         StringBuilder stops_string = new StringBuilder();
         name.setText(vehicle.getLine().getName());
@@ -225,7 +238,7 @@ public class controller {
         stops.setText("Zastavky:");
         text.setText(stops_string.toString());
     }
-
+    
     public void setTo_user_time(){
         if((hours.getText().matches("^[0-1]?[0-9]$|^[2]?[0-3]$"))){
             if(minutes.getText().matches("^[0-5]?[0-9]$")){
