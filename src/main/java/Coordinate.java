@@ -1,9 +1,7 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class Coordinate - makes from x, y coordinate. //
-//////////////////////////////////////////////////////////////////////
-
+/**
+ * Vytváří z hodnot x a y souřadnici.
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class Coordinate implements Cloneable{
     protected double x = 0;
     protected double y = 0;

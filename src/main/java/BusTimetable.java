@@ -1,6 +1,10 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Reprezentuje jeden seznam na zastávece s příjezdy.
+ * @author Mojmír Kyjonka
+ */
 public class BusTimetable {
     private String Line;
     private ArrayList<LocalTime> Times = new ArrayList<>();

@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class stop - represents stop and its           //
-//      information.                                                //
-//////////////////////////////////////////////////////////////////////
-
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -12,6 +5,10 @@ import javafx.scene.shape.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reprezentuje jednu zastávku
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class Stop implements draw_map{
     private int stop_id;         //street id
     private String stop_name;   //ulice
@@ -89,6 +86,10 @@ public class Stop implements draw_map{
         return this.corner;
     }
 
+    /**
+     * Vrací seznam vytvořených tvarů.
+     * @return Seznam objetků typu tvar.
+     */
     @Override
     public List<Shape> draw(){
         List<Shape> tmp_list = new ArrayList<Shape>();

@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class vehicle - represents vehicle and its     //
-//      information.                                                //
-//////////////////////////////////////////////////////////////////////
-
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -14,6 +7,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reprezentuje jedno vozidlo
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class Vehicle implements draw_map{
     private Line line;
     private Coordinate actual_position;
@@ -23,9 +20,19 @@ public class Vehicle implements draw_map{
     private Shape my_shape;
     private LocalTime start_time;
 
+    /**
+     * Vytváří vozidlo.
+     * @param id ID vozidla.
+     * @return Vrací novou instanci vozidla.
+     */
     static Vehicle defaultVehicle(Line id){
         return new Vehicle(id);
     }
+
+    /**
+     * Konstruktor - vytváří vozdilo.
+     * @param id ID vozidla.
+     */
     public Vehicle(Line id){
         this.line = id;
 
@@ -51,6 +58,10 @@ public class Vehicle implements draw_map{
         return (index >= line.stop_count());
     }
 
+    /**
+     * Vypočítá o kolik se má vozidlo pohnout a natavi ho na vypočtenou pozici.
+     * @param multiplier Násobek pohybu (pokud je čas zrychlen).
+     */
     public void move(int multiplier) {
 
         while (true) {
@@ -151,6 +162,10 @@ public class Vehicle implements draw_map{
         return this.line;
     }
 
+    /**
+     * Vrací seznam vytvořených tvarů.
+     * @return Seznam objetků typu tvar.
+     */
     @Override
     public List<Shape> draw(){
         return bus;

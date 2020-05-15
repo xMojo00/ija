@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class Line - represents line and its           //
-//      information.                                                //
-//////////////////////////////////////////////////////////////////////
-
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
@@ -12,6 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reprezentuje jednu linku
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class Line implements draw_map{
     private String name;
     private int line_id;
@@ -21,8 +18,8 @@ public class Line implements draw_map{
 
     /**
      * Vytvoří linku.
-     * @param starts List s časy, ve kterých linka vyjíždí.
-     * @param stops List zastávek.
+     * @param starts Seznam s časy, ve kterých linka vyjíždí.
+     * @param stops Seznam zastávek.
      * @param name Název linky.
      * @param line_id ID linky.
      */
@@ -60,7 +57,7 @@ public class Line implements draw_map{
 
     /**
      * Vrací velikost seznamu, ve kterém jsou zastávky.
-     * @return
+     * @return Velikost seznamu zastávek.
      */
     public int stop_count() {
         return stops.size();
@@ -74,20 +71,12 @@ public class Line implements draw_map{
         return this.start_times;
     }
 
-    public int getLine_id(){
-        return this.line_id;
-    }
-
     /**
      * Vrací souřadnice zastávky, na které lisnka začíná.
      * @return Souřadnice první zastávky.
      */
     public Coordinate start_stop(){
         return this.stops.get(0).get_coordinates();
-    }
-
-    public Coordinate last_stop(){
-        return this.stops.get(stops.size()-1).get_coordinates();
     }
 
     /**
@@ -98,6 +87,10 @@ public class Line implements draw_map{
         return this.name;
     }
 
+    /**
+     * Vrací seznam vytvořených tvarů.
+     * @return Seznam objetků typu tvar.
+     */
     @Override
     public List<Shape> draw(){
         my_shape.clear();

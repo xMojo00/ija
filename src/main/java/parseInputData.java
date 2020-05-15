@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class parseInputData - parse data from file    //
-//      and makes instances.                                        //
-//////////////////////////////////////////////////////////////////////
-
 import java.io.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -12,8 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Načítá data ze souboru a vytváří instance
+ * @author Mojmír Kyjonka
+ */
 public class parseInputData {
 
+    /**
+     * Načítá všechna data ze souboru
+     * @return Při uspěchu data jinak null.
+     */
     private String get_data() {
 
         String path = parseInputData.class.getResource("parseInputData.class").toString().substring(6);
@@ -30,10 +31,18 @@ public class parseInputData {
         return null;
     }
 
+    /**
+     * Konstrukor
+     */
     public parseInputData() {
 
     }
 
+    /**
+     * Vrací seznam načtených ulic ze souboru.
+     * @param input_stops Seznam načtených zastávek.
+     * @return Seznam ulic.
+     */
     public List<Street> get_streets(List<Stop> input_stops) {
 
         List<Street> return_list = new ArrayList<>();
@@ -76,6 +85,10 @@ public class parseInputData {
         return return_list;
     }
 
+    /**
+     * Vraci senzam zastávek.
+     * @return Seznam zastávek.
+     */
     public List<Stop> get_stops(){
 
         List<Stop> return_list = new ArrayList<>();
@@ -99,6 +112,11 @@ public class parseInputData {
         return return_list;
     }
 
+    /**
+     * Vrací seznam linek.
+     * @param input_stops seznam zastávek.
+     * @return Seznam linek.
+     */
     public List<Line> get_lines(List<Stop> input_stops){
         List<Line> return_list = new ArrayList<>();
         String data = get_data();

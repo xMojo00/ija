@@ -1,16 +1,13 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class Street - represents street and its       //
-//      information.                                                //
-//////////////////////////////////////////////////////////////////////
-
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reprezentuje jednu ulici.
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class Street implements draw_map{
     private int street_id;
     private String street_name;
@@ -57,8 +54,8 @@ public class Street implements draw_map{
     }
 
     /**
-     *
-     * @return
+     * Vrací seznam vytvořených tvarů.
+     * @return Seznam objetků typu tvar.
      */
     @Override
     public List<Shape> draw(){

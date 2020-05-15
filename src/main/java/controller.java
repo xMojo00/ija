@@ -1,9 +1,3 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description: Class controller - . //
-//////////////////////////////////////////////////////////////////////
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -17,6 +11,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Reprezentuje controler
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class controller {
     private LocalTime time = LocalTime.now().withNano(0);
     private LocalTime lastTick = LocalTime.now().withNano(0);

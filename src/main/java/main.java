@@ -1,8 +1,3 @@
-//////////////////////////////////////////////////////////////////////
-//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
-//      Poject: Java - public transport simulation                  //
-//      Description:
-//////////////////////////////////////////////////////////////////////
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,10 +12,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//sudo apt install openjfx=8u161-b12-1ubuntu2 openjfx-source=8u161-b12-1ubuntu2 libopenjfx-java=8u161-b12-1ubuntu2 libopenjfx-jni=8u161-b12-1ubuntu2
-
+/**
+ *
+ * @author Petr Balazy, Mojmír Kyjonka
+ */
 public class main extends Application {
 
+    /**
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader load = new FXMLLoader(getClass().getResource("/layout.fxml"));
