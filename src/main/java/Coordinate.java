@@ -1,3 +1,9 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description: Class Coordinate - makes from x, y coordinate. //
+//////////////////////////////////////////////////////////////////////
+
 public class Coordinate implements Cloneable{
     protected double x = 0;
     protected double y = 0;
@@ -30,16 +36,6 @@ public class Coordinate implements Cloneable{
         return x + "," + y;
     }
 
-    //@Override
-    public boolean equals(java.lang.Object obj) {
-        Coordinate temp = (Coordinate) obj;
-        if(temp.getX() == this.getX() && temp.getY() == this.getY()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 
     public Object clone()throws CloneNotSupportedException{
         return super.clone();

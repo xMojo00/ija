@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description: Class stop - represents stop and its           //
+//      information.                                                //
+//////////////////////////////////////////////////////////////////////
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;

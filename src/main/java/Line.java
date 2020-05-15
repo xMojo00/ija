@@ -1,3 +1,11 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description: Class Line - represents line and its           //
+//      information.                                                //
+//////////////////////////////////////////////////////////////////////
+
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 

@@ -1,3 +1,8 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description:
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

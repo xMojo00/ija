@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description: Class vehicle - represents vehicle and its     //
+//      information.                                                //
+//////////////////////////////////////////////////////////////////////
+
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

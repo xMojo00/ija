@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description: Class Street - represents street and its       //
+//      information.                                                //
+//////////////////////////////////////////////////////////////////////
+
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 

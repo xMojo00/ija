@@ -1,6 +1,14 @@
+//////////////////////////////////////////////////////////////////////
+//      Authors: Petr Balazy(xbalaz10), Mojmir Kyjonka(xkyjon00)    //
+//      Poject: Java - public transport simulation                  //
+//      Description: Class parseInputData - parse data from file    //
+//      and makes instances.                                        //
+//////////////////////////////////////////////////////////////////////
+
 import java.io.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
