@@ -116,6 +116,7 @@ public class controller {
                     for (LocalTime start_time : start_times) {
                         if ((lastTick.isBefore(start_time) && time.isAfter(start_time)) || time.equals(start_time)) {
                             Vehicle v = Vehicle.defaultVehicle(line);
+                            v.set_start_time(start_time);
                             vehicles.add(v);
                             List<draw_map> part = new ArrayList<>();
                             part.add(v);
@@ -181,9 +182,20 @@ public class controller {
     public void setInfo_panel_vehicle(Vehicle vehicle){
         StringBuilder stops_string = new StringBuilder();
         name.setText(vehicle.getLine().getName());
+        int delay = 0;
+        Coordinate old = vehicle.getLine().get_stops().get(0).get_coordinates();
+        Coordinate current;
         for (Stop stop : vehicle.getLine().get_stops()) {
+            current = stop.get_coordinates();
+            double x_distance = Math.pow(Math.abs(old.x - current.x),2);
+            double y_distance = Math.pow(Math.abs(old.y - current.y),2);
+            double distance = Math.sqrt(x_distance + y_distance);
+            delay = (int) ((delay * 1.0004) + distance);
+            old = stop.get_coordinates();
+
             if(!stop.is_corner()) {
                 stops_string.append(stop.getStop_name()).append("\n");
+                stops_string.append(" ").append(vehicle.get_start_time().plusSeconds(delay)).append("\n");
             }
         }
         if(mark_line.size() < 1) {
@@ -237,6 +249,7 @@ public class controller {
                 for (LocalTime start_time : start_times) {
                     if (start_time.getHour() == tmp_time.getHour() && start_time.getMinute() == tmp_time.getMinute() && start_time.getSecond() == tmp_time.getSecond()) {
                         Vehicle v = Vehicle.defaultVehicle(line);
+                        v.set_start_time(start_time);
                         vehicles.add(v);
                     }
                 }

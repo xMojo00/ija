@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class Vehicle implements draw_map{
     private List<Shape> bus;
     private int index = 1;
     private Shape my_shape;
+    private LocalTime start_time;
 
     static Vehicle defaultVehicle(Line id){
         return new Vehicle(id);
@@ -106,12 +108,19 @@ public class Vehicle implements draw_map{
         }
 
 
-
         for (Shape shape : bus) {
             Platform.runLater(() -> shape.setLayoutX(this.actual_position.getX()));
             Platform.runLater(() -> shape.setLayoutY(this.actual_position.getY()));
         }
 
+    }
+
+    public void set_start_time(LocalTime time) {
+        start_time = time;
+    }
+
+    public LocalTime get_start_time() {
+        return start_time;
     }
 
     public Coordinate get_actual_position(){
