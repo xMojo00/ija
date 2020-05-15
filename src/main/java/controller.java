@@ -27,6 +27,7 @@ public class controller {
     private int var_time_speed = 1;
     private Timer timer;
     private List<draw_map> mark_line = new ArrayList<>();
+    private boolean first_start = true;
 
     @FXML
     private Pane map;
@@ -108,6 +109,9 @@ public class controller {
             @Override
             public void run() {
                 set_time();
+                if(first_start){
+                    first_start = false;
+                }
                 for(int i = 0; i < lines.size(); i++){
                     List<LocalTime> start_times = lines.get(i).get_start_times();
                     for (LocalTime start_time : start_times) {
