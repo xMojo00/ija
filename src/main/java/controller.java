@@ -20,8 +20,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class controller {
-    private LocalTime time = LocalTime.now();
-    private LocalTime lastTick = LocalTime.now();
+    private LocalTime time = LocalTime.now().withNano(0);
+    private LocalTime lastTick = LocalTime.now().withNano(0);
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Line> lines;
     private int var_time_speed = 1;
@@ -109,26 +109,22 @@ public class controller {
             @Override
             public void run() {
                 set_time();
-                if(first_start){
+                if (first_start){
                     first_start = false;
+                    Platform.runLater(() -> setTransport_by_time());
                 }
-                for(int i = 0; i < lines.size(); i++){
-                    List<LocalTime> start_times = lines.get(i).get_start_times();
+                for (Line line : lines) {
+                    List<LocalTime> start_times = line.get_start_times();
                     for (LocalTime start_time : start_times) {
                         if ((lastTick.isBefore(start_time) && time.isAfter(start_time)) || time.equals(start_time)) {
-                            Vehicle v = Vehicle.defaultVehicle(lines.get(i));
+                            Vehicle v = Vehicle.defaultVehicle(line);
                             vehicles.add(v);
                             List<draw_map> part = new ArrayList<>();
                             part.add(v);
-                            for(draw_map draw_map : part){
+                            for (draw_map draw_map : part) {
                                 Platform.runLater(() -> map.getChildren().addAll(draw_map.draw()));
                             }
-                            v.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-                                    setInfo_panel_vehicle(v);
-                                }
-                            });
+                            v.getMy_shape().setOnMouseClicked(event -> setInfo_panel_vehicle(v));
                         }
                     }
                 }
@@ -144,8 +140,8 @@ public class controller {
                     }
                 }
 
-                for(int i = 0; i < vehicles.size(); i++){
-                    vehicles.get(i).move(var_time_speed);
+                for (Vehicle vehicle : vehicles) {
+                    vehicle.move(var_time_speed);
                 }
 
                 lastTick = time;
@@ -160,36 +156,36 @@ public class controller {
     }
 
     public void setInfo_panel_street(Street street){
-        String stops_string = "";
+        StringBuilder stops_string = new StringBuilder();
         name.setText(street.get_street_name());
         for (Stop stop : street.getStops()) {
             if(!stop.is_corner()) {
-                stops_string = stops_string + stop.getStop_name() + "\n";
+                stops_string.append(stop.getStop_name()).append("\n");
             }
         }
         stops.setText("Zastavky:");
-        text.setText(stops_string);
+        text.setText(stops_string.toString());
     }
 
     public void setInfo_panel_stop(Stop stop){
-        String stops_string = "";
+        StringBuilder stops_string = new StringBuilder();
 
         name.setText(stop.getStop_name());
 
         for(BusTimetable t: stop.get_timetables()){
-            stops_string = stops_string + t.getLine() + "\n" + t.getTime() + "\n";
+            stops_string.append(t.getLine()).append("\n").append(t.getTime()).append("\n");
         }
 
         stops.setText("Jizdni rad:");
-        text.setText(stops_string);
+        text.setText(stops_string.toString());
     }
 
     public void setInfo_panel_vehicle(Vehicle vehicle){
-        String stops_string = "";
+        StringBuilder stops_string = new StringBuilder();
         name.setText(vehicle.getLine().getName());
         for (Stop stop : vehicle.getLine().get_stops()) {
             if(!stop.is_corner()) {
-                stops_string = stops_string + stop.getStop_name() + "\n";
+                stops_string.append(stop.getStop_name()).append("\n");
             }
         }
         if(mark_line.size() < 1) {
@@ -204,9 +200,9 @@ public class controller {
             mark_line.clear();
         }
 
-        for(int i = 0; i < vehicles.size(); i++) {
+        for (Vehicle value : vehicles) {
             List<draw_map> part = new ArrayList<>();
-            part.add(vehicles.get(i));
+            part.add(value);
             for (draw_map draw_map : part) {
                 Platform.runLater(() -> map.getChildren().removeAll(draw_map.draw()));
             }
@@ -216,7 +212,7 @@ public class controller {
 
         }
         stops.setText("Zastavky:");
-        text.setText(stops_string);
+        text.setText(stops_string.toString());
     }
 
     public void setTo_user_time(){
@@ -233,15 +229,15 @@ public class controller {
         }
     }
 
-    public void setTransport_by_time(){
+    public void setTransport_by_time() {
         LocalTime tmp_time = LocalTime.of(time.getHour(),time.getMinute(),time.getSecond());
         tmp_time = tmp_time.minusHours(2);
         while(time.compareTo(tmp_time) != 0) {
-            for (int i = 0; i < lines.size(); i++) {
-                List<LocalTime> start_times = lines.get(i).get_start_times();
+            for (Line line : lines) {
+                List<LocalTime> start_times = line.get_start_times();
                 for (LocalTime start_time : start_times) {
-                    if(start_time.getHour() == tmp_time.getHour() && start_time.getMinute() == tmp_time.getMinute() && start_time.getSecond() == tmp_time.getSecond()) {
-                        Vehicle v = Vehicle.defaultVehicle(lines.get(i));
+                    if (start_time.getHour() == tmp_time.getHour() && start_time.getMinute() == tmp_time.getMinute() && start_time.getSecond() == tmp_time.getSecond()) {
+                        Vehicle v = Vehicle.defaultVehicle(line);
                         vehicles.add(v);
                     }
                 }
@@ -253,8 +249,8 @@ public class controller {
                 }
             }
 
-            for (int i = 0; i < vehicles.size(); i++) {
-                vehicles.get(i).move(1);
+            for (Vehicle vehicle : vehicles) {
+                vehicle.move(1);
             }
 
             tmp_time = tmp_time.plusSeconds(1);
@@ -265,12 +261,7 @@ public class controller {
             part.add(vehicle);
             for(draw_map draw_map : part){
                 map.getChildren().addAll(draw_map.draw());
-                vehicle.getMy_shape().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        setInfo_panel_vehicle(vehicle);
-                    }
-                });
+                vehicle.getMy_shape().setOnMouseClicked(event -> setInfo_panel_vehicle(vehicle));
             }
         }
     }
