@@ -14,9 +14,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class controller {
-    private LocalTime time = LocalTime.of(0,0,0);
-    private LocalTime lastTick = LocalTime.of(0,0,0);
-    private List<draw_map> part = new ArrayList<>();
+    private LocalTime time = LocalTime.now();
+    private LocalTime lastTick = LocalTime.now();
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Line> lines;
     private int var_time_speed = 1;
@@ -75,18 +74,11 @@ public class controller {
     }
 
     public void draw_parts(List<draw_map> part){
-        this.part = part;
         for(draw_map draw_map : part){
             map.getChildren().addAll(draw_map.draw());
         }
     }
 
-    public void remove_parts(List<draw_map> part){
-        this.part = part;
-        for(draw_map draw_map : part){
-            map.getChildren().removeAll(draw_map.draw());
-        }
-    }
 
     public void remove_all_vehicles(){
         int size = vehicles.size();
@@ -175,7 +167,7 @@ public class controller {
         name.setText(stop.getStop_name());
 
         for(BusTimetable t: stop.get_timetables()){
-            stops_string = stops_string + t.getLine() + "\n" + t.getTime();
+            stops_string = stops_string + t.getLine() + "\n" + t.getTime() + "\n";
         }
 
         stops.setText("Jizdni rad:");
