@@ -5,10 +5,8 @@
 //////////////////////////////////////////////////////////////////////
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -195,8 +193,9 @@ public class controller {
             }
         }
         else{
-            mark_line.add(vehicle.getLine());
-            map.getChildren().removeAll(vehicle.getLine().getMy_shape());
+            for (Vehicle veh : vehicles) {
+                map.getChildren().removeAll(veh.getLine().getMy_shape());
+            }
             mark_line.clear();
         }
 
