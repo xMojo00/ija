@@ -25,7 +25,7 @@ public class main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader load = new FXMLLoader(getClass().getResource("/layout.fxml"));
+        FXMLLoader load = new FXMLLoader(getClass().getResource("layout.fxml"));
         primaryStage.setTitle("Simulace hromadne dopravy");
         BorderPane root = load.load();
         Scene scene = new Scene(root);
@@ -35,19 +35,19 @@ public class main extends Application {
 
         parseInputData parser = new parseInputData();
         controller my_controller = load.getController();
-        List<Stop> stop_list = parser.get_stops();
-        List<Street> street_list = parser.get_streets(stop_list);
-        List<Line> lines_list = parser.get_lines(stop_list);
+        List<Stop> stop_list = parser.getStops();
+        List<Street> street_list = parser.getStreets(stop_list);
+        List<Line> lines_list = parser.getLines(stop_list);
         List<draw_map> objects = new ArrayList<>();
 
         //// jizdni rady
 
         for (Line line: lines_list) {
             List<Integer> visited = new ArrayList<>();
-            Coordinate old = line.get_stop(0).get_coordinates();
-            Coordinate current =  line.get_stop(0).get_coordinates();
+            Coordinate old = line.getStop(0).get_coordinates();
+            Coordinate current =  line.getStop(0).get_coordinates();
             int delay = 0;
-                for (Stop stops: line.get_stops()) {
+                for (Stop stops: line.getStops()) {
                     BusTimetable timetable = new BusTimetable(line.getName());
                     current = stops.get_coordinates();
 
@@ -58,7 +58,7 @@ public class main extends Application {
                     delay = (int) ((delay * 1.0004) + distance);
 
                     old = stops.get_coordinates();
-                    for (LocalTime t : line.get_start_times()) {
+                    for (LocalTime t : line.getStart_times()) {
                         timetable.addTime(t.plusSeconds(delay));
                     }
                     if (!visited.contains(stops.get_id())) {
@@ -111,5 +111,9 @@ public class main extends Application {
 
         my_controller.setLines(lines_list);
         my_controller.start_timer();
+    }
+
+    public static void main(String[] args){
+        launch(args);
     }
 }

@@ -120,17 +120,17 @@ public class controller {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                set_time();
+                setTime();
                 if (first_start){
                     first_start = false;
                     Platform.runLater(() -> setTransport_by_time());
                 }
                 for (Line line : lines) {
-                    List<LocalTime> start_times = line.get_start_times();
+                    List<LocalTime> start_times = line.getStart_times();
                     for (LocalTime start_time : start_times) {
                         if ((lastTick.isBefore(start_time) && time.isAfter(start_time)) || time.equals(start_time)) {
                             Vehicle v = Vehicle.defaultVehicle(line);
-                            v.set_start_time(start_time);
+                            v.setStart_time(start_time);
                             vehicles.add(v);
                             List<draw_map> part = new ArrayList<>();
                             part.add(v);
@@ -166,7 +166,7 @@ public class controller {
     /**
      * Nastaví a zobrazí čas v aplikaci.
      */
-    public void set_time(){
+    public void setTime(){
         String time_to_text = String.format("%02d:%02d:%02d", time.getHour(),time.getMinute(),time.getSecond());
         Platform.runLater(() -> watch.setText(time_to_text));
     }
@@ -177,7 +177,7 @@ public class controller {
      */
     public void setInfo_panel_street(Street street){
         StringBuilder stops_string = new StringBuilder();
-        name.setText(street.get_street_name());
+        name.setText(street.getStreet_name());
         for (Stop stop : street.getStops()) {
             if(!stop.is_corner()) {
                 stops_string.append(stop.getStop_name()).append("\n");
@@ -212,9 +212,9 @@ public class controller {
         StringBuilder stops_string = new StringBuilder();
         name.setText(vehicle.getLine().getName());
         int delay = 0;
-        Coordinate old = vehicle.getLine().get_stops().get(0).get_coordinates();
+        Coordinate old = vehicle.getLine().getStops().get(0).get_coordinates();
         Coordinate current;
-        for (Stop stop : vehicle.getLine().get_stops()) {
+        for (Stop stop : vehicle.getLine().getStops()) {
             current = stop.get_coordinates();
             double x_distance = Math.pow(Math.abs(old.x - current.x),2);
             double y_distance = Math.pow(Math.abs(old.y - current.y),2);
@@ -224,7 +224,7 @@ public class controller {
 
             if(!stop.is_corner()) {
                 stops_string.append(stop.getStop_name()).append("\n");
-                stops_string.append(" ").append(vehicle.get_start_time().plusSeconds(delay)).append("\n");
+                stops_string.append(" ").append(vehicle.getStart_time().plusSeconds(delay)).append("\n");
             }
         }
         if(mark_line.size() < 1) {
@@ -280,11 +280,11 @@ public class controller {
         tmp_time = tmp_time.minusHours(2);
         while(time.compareTo(tmp_time) != 0) {
             for (Line line : lines) {
-                List<LocalTime> start_times = line.get_start_times();
+                List<LocalTime> start_times = line.getStart_times();
                 for (LocalTime start_time : start_times) {
                     if (start_time.getHour() == tmp_time.getHour() && start_time.getMinute() == tmp_time.getMinute() && start_time.getSecond() == tmp_time.getSecond()) {
                         Vehicle v = Vehicle.defaultVehicle(line);
-                        v.set_start_time(start_time);
+                        v.setStart_time(start_time);
                         vehicles.add(v);
                     }
                 }

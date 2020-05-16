@@ -9,7 +9,7 @@ import java.util.List;
  * Reprezentuje jednu linku
  * @author Petr Balazy, Mojmír Kyjonka
  */
-public class Line implements draw_map{
+public class Line implements draw_map {
     private String name;
     private int line_id;
     private List<LocalTime> start_times;
@@ -43,7 +43,7 @@ public class Line implements draw_map{
      * @param index Pozice stopky v seznamu.
      * @return Vrací stopku na indexu.
      */
-    public Stop get_stop(int index) {
+    public Stop getStop(int index) {
         return this.stops.get(index);
     }
 
@@ -51,7 +51,7 @@ public class Line implements draw_map{
      * Vrací seznam zastávek na lince.
      * @return Seznam zastávek.
      */
-    public List<Stop> get_stops() {
+    public List<Stop> getStops() {
         return this.stops;
     }
 
@@ -67,7 +67,7 @@ public class Line implements draw_map{
      * Vrací seznam s časy, kdy linka vyjíždí.
      * @return Seznam s časy.
      */
-    public List<LocalTime> get_start_times(){
+    public List<LocalTime> getStart_times(){
         return this.start_times;
     }
 
@@ -75,7 +75,7 @@ public class Line implements draw_map{
      * Vrací souřadnice zastávky, na které lisnka začíná.
      * @return Souřadnice první zastávky.
      */
-    public Coordinate start_stop(){
+    public Coordinate getStartStop(){
         return this.stops.get(0).get_coordinates();
     }
 
@@ -94,11 +94,11 @@ public class Line implements draw_map{
     @Override
     public List<Shape> draw(){
         my_shape.clear();
-        for (int i = 0; i < get_stops().size() - 1; i++){
-            javafx.scene.shape.Line l = new javafx.scene.shape.Line(get_stops().get(i).get_coordinates().getX(),
-                    get_stops().get(i).get_coordinates().getY(),
-                    get_stops().get(i+1).get_coordinates().getX(),
-                    get_stops().get(i+1).get_coordinates().getY());
+        for (int i = 0; i < getStops().size() - 1; i++){
+            javafx.scene.shape.Line l = new javafx.scene.shape.Line(getStops().get(i).get_coordinates().getX(),
+                    getStops().get(i).get_coordinates().getY(),
+                    getStops().get(i+1).get_coordinates().getX(),
+                    getStops().get(i+1).get_coordinates().getY());
             l.setStrokeWidth(3);
             l.setStroke(Color.YELLOW);
             my_shape.add(l);

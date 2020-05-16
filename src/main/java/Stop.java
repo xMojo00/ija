@@ -9,7 +9,7 @@ import java.util.List;
  * Reprezentuje jednu zastávku
  * @author Petr Balazy, Mojmír Kyjonka
  */
-public class Stop implements draw_map{
+public class Stop implements draw_map {
     private int stop_id;         //street id
     private String stop_name;   //ulice
     private Coordinate xy;          //souradnice zastavky

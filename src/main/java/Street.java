@@ -8,7 +8,7 @@ import java.util.List;
  * Reprezentuje jednu ulici.
  * @author Petr Balazy, Mojmír Kyjonka
  */
-public class Street implements draw_map{
+public class Street implements draw_map {
     private int street_id;
     private String street_name;
     private ArrayList<Coordinate> co;
@@ -33,7 +33,7 @@ public class Street implements draw_map{
      * Vrátí název ulice.
      * @return Název ulice.
      */
-    public String get_street_name() {
+    public String getStreet_name() {
         return this.street_name;
     }
 

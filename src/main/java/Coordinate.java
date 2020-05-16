@@ -8,7 +8,7 @@ public class Coordinate implements Cloneable{
 
     /**
      * Vrací hodnotu na ose x.
-     * @return Souřadnice x.
+     * @return Hodnota x.
      */
     public double getX(){
         return this.x;
@@ -16,7 +16,7 @@ public class Coordinate implements Cloneable{
 
     /**
      * Vrací hodnotu na ose y.
-     * @return Souřadnice y.
+     * @return Hodnota y.
      */
     public double getY(){
         return this.y;
@@ -32,11 +32,6 @@ public class Coordinate implements Cloneable{
         this.y = y;
     }
 
-    /**
-     *
-     * @return
-     * @throws CloneNotSupportedException
-     */
     public Object clone() throws CloneNotSupportedException{
         return super.clone();
     }

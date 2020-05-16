@@ -13,14 +13,12 @@ public class parseInputData {
 
     /**
      * Načítá všechna data ze souboru
-     * @return Při uspěchu data jinak null.
+     * @return Při úspěchu vrací data, jinak null.
      */
-    private String get_data() {
+    private String getData() {
 
-        String path = parseInputData.class.getResource("parseInputData.class").toString().substring(6);
-        path = path.substring(0, path.length() - 44);
-        path = path + "data/data.txt";
-        path = "/" + path;
+        String path = new File("").getAbsolutePath();
+        path = path + "/data/data.txt";
         try (Scanner s = new Scanner(new File(path))) {
             String content = s.useDelimiter("\\Z").next();
             s.close();
@@ -43,10 +41,10 @@ public class parseInputData {
      * @param input_stops Seznam načtených zastávek.
      * @return Seznam ulic.
      */
-    public List<Street> get_streets(List<Stop> input_stops) {
+    public List<Street> getStreets(List<Stop> input_stops) {
 
         List<Street> return_list = new ArrayList<>();
-        String data = get_data();
+        String data = getData();
         String line;
         data = data.substring(data.indexOf("#Street"));
         data = data.substring(data.indexOf("\n")+1);
@@ -89,10 +87,10 @@ public class parseInputData {
      * Vraci senzam zastávek.
      * @return Seznam zastávek.
      */
-    public List<Stop> get_stops(){
+    public List<Stop> getStops(){
 
         List<Stop> return_list = new ArrayList<>();
-        String data = get_data();
+        String data = getData();
         String line;
         data = data.substring(data.indexOf("#Stop"));
         data = data.substring(data.indexOf("\n")+1);
@@ -117,9 +115,9 @@ public class parseInputData {
      * @param input_stops seznam zastávek.
      * @return Seznam linek.
      */
-    public List<Line> get_lines(List<Stop> input_stops){
+    public List<Line> getLines(List<Stop> input_stops){
         List<Line> return_list = new ArrayList<>();
-        String data = get_data();
+        String data = getData();
         String line;
         data = data.substring(data.indexOf("#Line"));
         data = data.substring(data.indexOf("\n")+1);

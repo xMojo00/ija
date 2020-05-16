@@ -11,7 +11,7 @@ import java.util.List;
  * Reprezentuje jedno vozidlo
  * @author Petr Balazy, Mojmír Kyjonka
  */
-public class Vehicle implements draw_map{
+public class Vehicle implements draw_map {
     private Line line;
     private Coordinate actual_position;
     private Coordinate destination;
@@ -38,12 +38,12 @@ public class Vehicle implements draw_map{
 
         // due to overriding stop position
         try {
-            this.actual_position = (Coordinate) id.start_stop().clone();
+            this.actual_position = (Coordinate) id.getStartStop().clone();
         } catch (CloneNotSupportedException e) {
             System.out.println("error with cloning");
         }
 
-        this.destination = id.get_stop(index).get_coordinates();
+        this.destination = id.getStop(index).get_coordinates();
 
         bus = new ArrayList<>();
         bus.add(new Circle(0,0, 8, Color.BLUE));
@@ -74,7 +74,7 @@ public class Vehicle implements draw_map{
             if (actual_position.x == destination.x && actual_position.y == destination.y) {
                 index++;
                 if (index >= line.stop_count()) return;
-                destination = line.get_stop(index).get_coordinates();
+                destination = line.getStop(index).get_coordinates();
             }
 
             double x_distance = Math.abs(this.actual_position.x - this.destination.x);
@@ -134,7 +134,7 @@ public class Vehicle implements draw_map{
      * Nastaví čas výjezdu vozidla.
      * @param time Čas výjezdu.
      */
-    public void set_start_time(LocalTime time) {
+    public void setStart_time(LocalTime time) {
         start_time = time;
     }
 
@@ -142,7 +142,7 @@ public class Vehicle implements draw_map{
      * Vrací čas výjezdu.
      * @return Čas výjezdu.
      */
-    public LocalTime get_start_time() {
+    public LocalTime getStart_time() {
         return start_time;
     }
 
