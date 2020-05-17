@@ -32,35 +32,35 @@ public class controller {
     private AnchorPane info_panel;
 
     @FXML
-    Label watch;
+    private Label watch;
 
     @FXML
-    Label name;
+    private Label name;
 
     @FXML
-    Label stops;
+    private Label stops;
 
     @FXML
-    TextArea text;
+    private TextArea text;
 
     @FXML
     Button set_time_button;
 
     @FXML
-    TextField hours;
+    private TextField hours;
 
     @FXML
-    TextField minutes;
+    private TextField minutes;
 
     @FXML
-    TextField seconds;
+    private TextField seconds;
 
     @FXML
-    Slider time_speed_slider;
+    private Slider time_speed_slider;
 
     /**
-     *
-     * @param event
+     * Zprostředkovává zoom v aplikaci.
+     * @param event ScrollEvent
      */
     @FXML
     private void zoom(ScrollEvent event){
@@ -83,6 +83,10 @@ public class controller {
         var_time_speed = (int) time_speed_slider.getValue();
     }
 
+    /**
+     * Vykresluje tvary do okna aplikace.
+     * @param part Seznam tvarů.
+     */
     public void draw_parts(List<draw_map> part){
         for(draw_map draw_map : part){
             map.getChildren().addAll(draw_map.draw());
@@ -90,7 +94,7 @@ public class controller {
     }
 
     /**
-     * Odstraní všechna vozidla z mapy.
+     * Odstraní všechna vozidla z mapy aplikace.
      */
     public void remove_all_vehicles(){
         int size = vehicles.size();

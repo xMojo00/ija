@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Reprezentuje jedno vozidlo
+ * Reprezentuje jedno vozidlo.
  * @author Petr Balazy, Mojmír Kyjonka
  */
 public class Vehicle implements draw_map {

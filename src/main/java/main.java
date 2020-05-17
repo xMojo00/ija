@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Spouští běh programu.
  * @author Petr Balazy, Mojmír Kyjonka
  */
 public class main extends Application {
@@ -113,6 +113,10 @@ public class main extends Application {
         my_controller.start_timer();
     }
 
+    /**
+     * Metodda main - nedělá nic.
+     * @param args argumenty aplikace.
+     */
     public static void main(String[] args){
         launch(args);
     }
