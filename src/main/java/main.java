@@ -19,8 +19,8 @@ import java.util.List;
 public class main extends Application {
 
     /**
-     *
-     * @param primaryStage
+     * Zapíná GUI.
+     * @param primaryStage Hlavní stage.
      * @throws Exception
      */
     @Override
