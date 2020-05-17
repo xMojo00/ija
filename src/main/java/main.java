@@ -114,7 +114,7 @@ public class main extends Application {
     }
 
     /**
-     * Metodda main - nedělá nic.
+     * Metoda main - nedělá nic.
      * @param args argumenty aplikace.
      */
     public static void main(String[] args){
