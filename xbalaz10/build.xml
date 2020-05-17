@@ -24,5 +24,4 @@
     <target name="run">
         <java jar="dest/ija-app.jar" fork="true"/>
     </target>
-
 </project>
