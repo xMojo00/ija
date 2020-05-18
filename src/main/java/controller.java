@@ -207,12 +207,19 @@ public class controller {
     public void setInfo_panel_street(Street street){
         StringBuilder stops_string = new StringBuilder();
         name.setText(street.getStreet_name() + " - " + street.getStreet_id());
+        if(street.getStops().size() != 0){
+            stops_string.append("Zastavky:\n");
+        }
         for (Stop stop : street.getStops()) {
             if(!stop.is_corner()) {
-                stops_string.append(stop.getStop_name()).append("\n");
+                stops_string.append(" ").append(stop.getStop_name()).append("\n");
             }
         }
-        stops.setText("Zastavky:");
+        if(street.getBlocked()){
+            stops_string.append("Stav:\n");
+            stops_string.append(" Uzavreno");
+        }
+        stops.setText("Informace:");
         text.setText(stops_string.toString());
     }
 

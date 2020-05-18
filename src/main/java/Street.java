@@ -57,6 +57,10 @@ public class Street implements draw_map {
         return this.street_id;
     }
 
+    public boolean getBlocked(){
+        return blocked;
+    }
+
     /**
      * Vrací seznam vytvořených tvarů.
      * @return Seznam objetků typu tvar.
@@ -76,6 +80,11 @@ public class Street implements draw_map {
 
     public String disable_street(List<Line> lines) {
         List<Coordinate> temp = new ArrayList<>();
+
+        if(blocked){
+            blocked = false;
+            return "";
+        }
         for (Coordinate co:this.co) {
             temp.add(co);
         }
@@ -101,19 +110,15 @@ public class Street implements draw_map {
                                 line.getStop(i).get_coordinates().y == co2.y &&
                                 line.getStop(i+1).get_coordinates().x == co1.x &&
                                 line.getStop(i+1).get_coordinates().y == co1.y)) {
-                            System.out.println("x");
                             s = s.concat(Integer.toString(line.getLine_id()));
                             found = true;
                         }
 
                     }
                 }
-
-
-
             }
         }
-
+        blocked = true;
         return s;
     }
 }
