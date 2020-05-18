@@ -4,6 +4,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class controller {
     private Timer timer;
     private List<draw_map> mark_line = new ArrayList<>();
     private boolean first_start = true;
+    private List<Shape> corner_list = new ArrayList<Shape>();
 
     @FXML
     private Pane map;
@@ -57,6 +62,18 @@ public class controller {
 
     @FXML
     private Slider time_speed_slider;
+
+    @FXML
+    private TextField close_street;
+
+    @FXML
+    Button close_street_button;
+
+    @FXML
+    CheckBox corner_checkbox;
+
+
+
 
     /**
      * Zprostředkovává zoom v aplikaci.
@@ -181,7 +198,7 @@ public class controller {
      */
     public void setInfo_panel_street(Street street){
         StringBuilder stops_string = new StringBuilder();
-        name.setText(street.getStreet_name());
+        name.setText(street.getStreet_name() + " - " + street.getStreet_id());
         for (Stop stop : street.getStops()) {
             if(!stop.is_corner()) {
                 stops_string.append(stop.getStop_name()).append("\n");
@@ -314,6 +331,23 @@ public class controller {
                 map.getChildren().addAll(draw_map.draw());
                 vehicle.getMy_shape().setOnMouseClicked(event -> setInfo_panel_vehicle(vehicle));
             }
+        }
+    }
+
+    void draw_corners(List<Stop> stops){
+        if(corner_checkbox.isSelected()){
+            for (Stop stop: stops) {
+                Text t = new Text(stop.get_coordinates().getX() - 12, stop.get_coordinates().getY()+5, Integer.toString(stop.get_id()));
+                t.setFont(Font.font("Verdana", FontWeight.BOLD, 19));
+                //t.setFill(Color.PURPLE);
+                map.getChildren().addAll(t);
+
+                corner_list.add(t);
+
+            }
+        }
+        else{
+            map.getChildren().removeAll(corner_list);
         }
     }
 }

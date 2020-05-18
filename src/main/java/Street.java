@@ -53,12 +53,16 @@ public class Street implements draw_map {
         return this.my_shape;
     }
 
+    public int getStreet_id() {
+        return this.street_id;
+    }
+
     /**
      * Vrací seznam vytvořených tvarů.
      * @return Seznam objetků typu tvar.
      */
     @Override
-    public List<Shape> draw(){
+    public List<Shape> draw() {
         List<Shape> tmp_list = new ArrayList<>();
         int counter = 0;
         while (counter != co.size() - 1) {
