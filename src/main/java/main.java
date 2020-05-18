@@ -3,7 +3,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Shape;
@@ -109,23 +108,6 @@ public class main extends Application {
                 my_controller.setTo_user_time();
             }
         });
-
-        EventHandler handler = new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                if(event.getSource() instanceof CheckBox){
-                    CheckBox cb = (CheckBox) event.getSource();
-                    /*if("")
-                    if(my_controller.corner_checkbox.isSelected()){
-                        System.out.println("yes");
-                    }
-                    else{
-                        System.out.println("no");
-                    }*/
-                    System.out.println("no");
-                }
-            }
-        };
 
         my_controller.corner_checkbox.setOnAction(new EventHandler<ActionEvent>() {
             @Override

@@ -339,11 +339,8 @@ public class controller {
             for (Stop stop: stops) {
                 Text t = new Text(stop.get_coordinates().getX() - 12, stop.get_coordinates().getY()+5, Integer.toString(stop.get_id()));
                 t.setFont(Font.font("Verdana", FontWeight.BOLD, 19));
-                //t.setFill(Color.PURPLE);
                 map.getChildren().addAll(t);
-
                 corner_list.add(t);
-
             }
         }
         else{
