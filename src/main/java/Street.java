@@ -86,8 +86,9 @@ public class Street implements draw_map {
         String s = "";
 
         for (Line line:lines) {
+            boolean found = false;
             for (int i = 0; i + 1 < line.stop_count(); i++) {
-                boolean found = false;
+                if(found) break;
                 for (Coordinate co1:temp) {
                     if(found) break;
                     for (Coordinate co2:temp) {
