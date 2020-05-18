@@ -138,7 +138,7 @@ public class main extends Application {
             public void handle(ActionEvent event) {
                 if(!my_controller.close_street.getText().isEmpty()) {
                     for (Street street : street_list) {
-                        if(my_controller.close_street.getText() == street.getStreet_name()){
+                        if(Integer.parseInt(my_controller.close_street.getText()) == street.getStreet_id()){
                             String info = street.disable_street(lines_list);
                             my_controller.lines_to_update.setText(info);
                         }

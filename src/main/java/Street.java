@@ -1,4 +1,3 @@
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ public class Street implements draw_map {
     private ArrayList<Coordinate> co;
     private ArrayList<Stop> stops;
     private List<Shape> my_shape = new ArrayList<>();
+    private boolean blocked = false;
 
     /**
      * Vytvoří novou ulici.
@@ -66,11 +66,53 @@ public class Street implements draw_map {
         List<Shape> tmp_list = new ArrayList<>();
         int counter = 0;
         while (counter != co.size() - 1) {
-            tmp_list.add(new Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter + 1).getX(), co.get(counter + 1).getY()));
+            tmp_list.add(new javafx.scene.shape.Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter + 1).getX(), co.get(counter + 1).getY()));
             this.my_shape.add(tmp_list.get(tmp_list.size() - 1));
             tmp_list.get(tmp_list.size() - 1).setStrokeWidth(1.5);
             counter++;
         }
         return tmp_list;
+    }
+
+    public String disable_street(List<Line> lines) {
+        List<Coordinate> temp = new ArrayList<>();
+        for (Coordinate co:this.co) {
+            temp.add(co);
+        }
+        for (Stop stop:this.stops) {
+            temp.add(stop.get_coordinates());
+        }
+
+        String s = "";
+
+        for (Line line:lines) {
+            for (int i = 0; i + 1 < line.stop_count(); i++) {
+                boolean found = false;
+                for (Coordinate co1:temp) {
+                    if(found) break;
+                    for (Coordinate co2:temp) {
+                        if(found) break;
+                        if(((line).getStop(i).get_coordinates().x == co1.x &&
+                                line.getStop(i).get_coordinates().y == co1.y &&
+                                line.getStop(i+1).get_coordinates().x == co2.x &&
+                                line.getStop(i+1).get_coordinates().y == co2.y) ||
+                                ((line).getStop(i).get_coordinates().x == co2.x &&
+                                line.getStop(i).get_coordinates().y == co2.y &&
+                                line.getStop(i+1).get_coordinates().x == co1.x &&
+                                line.getStop(i+1).get_coordinates().y == co1.y)) {
+                            System.out.println("x");
+                            s = s.concat(Integer.toString(line.getLine_id()));
+                            found = true;
+                        }
+
+                    }
+                }
+
+
+
+            }
+        }
+
+        return s;
     }
 }
