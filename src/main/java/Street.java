@@ -72,7 +72,7 @@ public class Street implements draw_map {
         while (counter != co.size() - 1) {
             tmp_list.add(new javafx.scene.shape.Line(co.get(counter).getX(), co.get(counter).getY(), co.get(counter + 1).getX(), co.get(counter + 1).getY()));
             this.my_shape.add(tmp_list.get(tmp_list.size() - 1));
-            tmp_list.get(tmp_list.size() - 1).setStrokeWidth(1.5);
+            tmp_list.get(tmp_list.size() - 1).setStrokeWidth(2);
             counter++;
         }
         return tmp_list;
