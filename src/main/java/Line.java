@@ -109,4 +109,23 @@ public class Line implements draw_map {
         }
         return my_shape;
     }
+
+    public void change_route(List<Stop> stops, String input) {
+        this.stops.clear();
+        String[] data = input.split(",");
+
+        for (String s:data) {
+            try {
+                int id = Integer.parseInt(s);
+                for (Stop stop:stops) {
+                    if (stop.get_id() == id) {
+                        this.stops.add(stop);
+                    }
+                }
+            } catch (Exception e) {
+               System.out.println("Ilegal stop");
+            }
+        }
+
+    }
 }

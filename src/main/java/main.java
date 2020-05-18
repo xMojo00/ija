@@ -121,11 +121,11 @@ public class main extends Application {
             public void handle(ActionEvent event) {
                 if(!my_controller.update_line_text.getText().isEmpty()) {
                     String tmp = my_controller.update_line_text.getText();
-                    String data = tmp.substring(tmp.indexOf(";"));
+                    String data = tmp.substring(tmp.indexOf(";")+1);
                     tmp = tmp.substring(0, tmp.indexOf(";"));
                     for ( Line line : lines_list) {
                         if(Integer.parseInt(tmp) == line.getLine_id()){
-                            line.change_route.(stop_list ,data);
+                            line.change_route(stop_list ,data);
                         }
                     }
                 }
@@ -136,6 +136,8 @@ public class main extends Application {
 
         my_controller.setLines(lines_list);
         my_controller.start_timer();
+
+
     }
 
     /**
