@@ -146,12 +146,19 @@ public class main extends Application {
             }
         });
 
+        my_controller.collapse_button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                for (Street street : street_list) {
+                    if(Integer.parseInt(my_controller.collapse_street.getText()) == street.getStreet_id()){
 
+                    }
+                }
+            }
+        });
 
         my_controller.setLines(lines_list);
         my_controller.start_timer();
-
-
     }
 
     /**

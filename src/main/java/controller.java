@@ -81,6 +81,15 @@ public class controller {
     @FXML
     TextArea lines_to_update;
 
+    @FXML
+    Button collapse_button;
+
+    @FXML
+    TextField collapse_street;
+
+    @FXML
+    TextField collapse_level;
+
 
 
     /**

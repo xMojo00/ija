@@ -29,38 +29,55 @@
    <right>
       <AnchorPane fx:id="info_panel" prefHeight="584.0" prefWidth="210.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="14.0" prefHeight="29.0" prefWidth="174.0" textAlignment="CENTER">
+            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="29.0" prefWidth="174.0" textAlignment="CENTER">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="stops" alignment="TOP_LEFT" layoutX="10.0" layoutY="48.0" prefHeight="23.0" prefWidth="178.0" />
-            <TextArea fx:id="text" editable="false" layoutY="77.0" prefHeight="141.0" prefWidth="210.0" />
+            <Label fx:id="stops" alignment="TOP_LEFT" layoutX="9.0" layoutY="35.0" prefHeight="23.0" prefWidth="178.0" />
+            <TextArea fx:id="text" editable="false" layoutY="64.0" prefHeight="141.0" prefWidth="210.0" />
             <Label layoutX="10.0" layoutY="498.0" prefHeight="16.0" prefWidth="90.0" text="Nastavit čas:" />
-            <TextField fx:id="hours" layoutX="10.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" />
-            <TextField fx:id="minutes" layoutX="55.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" />
-            <TextField fx:id="seconds" layoutX="99.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" />
+            <TextField fx:id="hours" alignment="CENTER" layoutX="10.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" promptText="HH">
+               <font>
+                  <Font size="12.0" />
+               </font></TextField>
+            <TextField fx:id="minutes" alignment="CENTER" layoutX="55.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" promptText="MM">
+               <font>
+                  <Font size="12.0" />
+               </font></TextField>
+            <TextField fx:id="seconds" alignment="CENTER" layoutX="99.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" promptText="SS">
+               <font>
+                  <Font size="12.0" />
+               </font></TextField>
             <Button fx:id="set_time_button" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="151.0" layoutY="520.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="►" textAlignment="CENTER">
                <padding>
                   <Insets top="-2.0" />
                </padding></Button>
-            <TextField fx:id="close_street" layoutX="10.0" layoutY="465.0" prefHeight="26.0" prefWidth="127.0" />
-            <Label layoutX="10.0" layoutY="440.0" text="Uzavrit ulici:" />
+            <TextField fx:id="close_street" alignment="CENTER" layoutX="10.0" layoutY="465.0" prefHeight="26.0" prefWidth="127.0" promptText="ID ulice" />
+            <Label layoutX="10.0" layoutY="445.0" text="Uzavrit ulici:" />
             <Button fx:id="close_street_button" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="151.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="►" textAlignment="CENTER">
                <padding>
                   <Insets top="-2.0" />
                </padding>
             </Button>
-            <CheckBox fx:id="corner_checkbox" layoutX="11.0" layoutY="231.0" mnemonicParsing="false" text="Zobrazit zachytne body" />
-            <Label layoutX="10.0" layoutY="385.0" text="Zmena trasy:" />
-            <TextField fx:id="update_line_text" layoutX="10.0" layoutY="401.0" prefHeight="26.0" prefWidth="127.0" promptText="id;id_zach_bodu" />
+            <CheckBox fx:id="corner_checkbox" layoutX="11.0" layoutY="215.0" mnemonicParsing="false" text="Zobrazit zachytne body" />
+            <Label layoutX="11.0" layoutY="385.0" text="Zmena trasy:" />
+            <TextField fx:id="update_line_text" alignment="CENTER" layoutX="10.0" layoutY="401.0" prefHeight="26.0" prefWidth="127.0" promptText="id;id_zach_bodu" />
             <Button fx:id="update_line_button" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="151.0" layoutY="401.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="►" textAlignment="CENTER">
                <padding>
                   <Insets top="-2.0" />
                </padding>
             </Button>
             <TextArea fx:id="lines_to_update" editable="false" layoutX="9.0" layoutY="314.0" prefHeight="64.0" prefWidth="183.0" />
-            <Label layoutX="10.0" layoutY="291.0" prefHeight="16.0" prefWidth="140.0" text="Linky k uprave:" />
+            <Label layoutX="10.0" layoutY="295.0" prefHeight="16.0" prefWidth="140.0" text="Linky k uprave:" />
+            <Label layoutX="9.0" layoutY="240.0" prefHeight="16.0" prefWidth="121.0" text="Dopravni kolaps:" />
+            <TextField fx:id="collapse_street" alignment="CENTER" layoutX="10.0" layoutY="259.0" prefHeight="26.0" prefWidth="81.0" promptText="ID ulice" />
+            <Button fx:id="collapse_button" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="150.0" layoutY="259.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="►" textAlignment="CENTER">
+               <padding>
+                  <Insets top="-2.0" />
+               </padding>
+            </Button>
+            <TextField fx:id="collapse_level" alignment="CENTER" layoutX="97.0" layoutY="259.0" prefHeight="26.0" prefWidth="44.0" promptText="1-5" />
          </children></AnchorPane>
    </right>
    <top>
