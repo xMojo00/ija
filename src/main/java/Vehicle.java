@@ -65,6 +65,7 @@ public class Vehicle implements draw_map {
     public void move(int multiplier) {
 
         while (true) {
+            List<Street> street_list = this.line.getStop(0).get_street_list();
 
             double distance_to_travel;
             double x_remain;
@@ -88,6 +89,49 @@ public class Vehicle implements draw_map {
 
             x_share *= multiplier;
             y_share *= multiplier;
+
+            /// pokud je na jeble ulici tak rip zpomalit
+
+            for (Street street:street_list) {
+
+                if (street.street_colapse_level() == 1) continue;
+                List<Coordinate> temp = new ArrayList<>();
+
+                temp.addAll(street.get_coordinates());
+
+                for (Stop stop:street.getStops()) {
+                    temp.add(stop.get_coordinates());
+                }
+
+                boolean found = false;
+
+                for (Coordinate co1:temp) {
+                    if(found) break;
+                    for (Coordinate co2:temp) {
+                        if(found) break;
+                        if((this.line.getStop(index).get_coordinates().x == co1.x &&
+                            this.line.getStop(index).get_coordinates().y == co1.y &&
+                            this.line.getStop(index-1).get_coordinates().x == co2.x &&
+                            this.line.getStop(index-1).get_coordinates().y == co2.y) ||
+                            (this.line.getStop(index-1).get_coordinates().x == co2.x &&
+                            this.line.getStop(index-1).get_coordinates().y == co2.y &&
+                            this.line.getStop(index).get_coordinates().x== co1.x &&
+                            this.line.getStop(index).get_coordinates().y == co1.y)) {
+                            found = true;
+                        }
+
+                    }
+                }
+
+                if(found){
+                    x_share /= street.street_colapse_level();
+                    y_share /= street.street_colapse_level();
+                    break;
+                }
+
+
+            }
+
 
             if ((this.actual_position.x > this.destination.x)) {
                 this.actual_position.x -= (x_share);

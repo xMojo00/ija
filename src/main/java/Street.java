@@ -14,6 +14,7 @@ public class Street implements draw_map {
     private ArrayList<Stop> stops;
     private List<Shape> my_shape = new ArrayList<>();
     private boolean blocked = false;
+    private int street_colapse = 1;
 
     /**
      * Vytvoří novou ulici.
@@ -57,8 +58,20 @@ public class Street implements draw_map {
         return this.street_id;
     }
 
+    public int street_colapse_level() {
+        return this.street_colapse;
+    }
+
+    public void set_colapse_level(int i) {
+        this.street_colapse = i;
+    }
+
     public boolean getBlocked(){
         return blocked;
+    }
+
+    public ArrayList<Coordinate> get_coordinates() {
+        return this.co;
     }
 
     /**
@@ -85,9 +98,9 @@ public class Street implements draw_map {
             blocked = false;
             return "";
         }
-        for (Coordinate co:this.co) {
-            temp.add(co);
-        }
+
+        temp.addAll(this.co);
+
         for (Stop stop:this.stops) {
             temp.add(stop.get_coordinates());
         }

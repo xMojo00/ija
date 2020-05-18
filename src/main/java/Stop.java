@@ -16,6 +16,7 @@ public class Stop implements draw_map {
     private Boolean corner = false;
     private Shape my_shape;
     private ArrayList<BusTimetable> timetables = new ArrayList<>();
+    private List<Street> streets;
 
     /**
      * Vrací souřadnici na, kterých zastávka leží.
@@ -92,9 +93,17 @@ public class Stop implements draw_map {
      */
     @Override
     public List<Shape> draw(){
-        List<Shape> tmp_list = new ArrayList<Shape>();
+        List<Shape> tmp_list = new ArrayList<>();
         tmp_list.add(new Circle(xy.getX(),xy.getY(), 6, Color.RED));
         this.my_shape = tmp_list.get(tmp_list.size() - 1);
         return tmp_list;
+    }
+
+    public void set_street_list(List<Street> list) {
+        this.streets = list;
+    }
+
+    public List<Street> get_street_list() {
+        return this.streets;
     }
 }

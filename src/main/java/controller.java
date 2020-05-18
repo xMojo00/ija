@@ -28,7 +28,7 @@ public class controller {
     private Timer timer;
     private List<draw_map> mark_line = new ArrayList<>();
     private boolean first_start = true;
-    private List<Shape> corner_list = new ArrayList<Shape>();
+    private List<Shape> corner_list = new ArrayList<>();
 
     @FXML
     private Pane map;
@@ -224,10 +224,13 @@ public class controller {
                 stops_string.append(" ").append(stop.getStop_name()).append("\n");
             }
         }
+        stops_string.append("Stav:\n");
         if(street.getBlocked()){
-            stops_string.append("Stav:\n");
-            stops_string.append(" Uzavreno");
+            stops_string.append(" Uzavreno\n");
+        } else {
+            stops_string.append(" Prujezdna\n Mira zpomaleni: ").append(street.street_colapse_level());
         }
+
         stops.setText("Informace:");
         text.setText(stops_string.toString());
     }

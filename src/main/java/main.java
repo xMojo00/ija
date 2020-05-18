@@ -21,7 +21,7 @@ public class main extends Application {
     /**
      * Zapíná GUI.
      * @param primaryStage Hlavní stage.
-     * @throws Exception
+     * @throws Exception Vyjimka
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -45,7 +45,7 @@ public class main extends Application {
         for (Line line: lines_list) {
             List<Integer> visited = new ArrayList<>();
             Coordinate old = line.getStop(0).get_coordinates();
-            Coordinate current =  line.getStop(0).get_coordinates();
+            Coordinate current;
             int delay = 0;
                 for (Stop stops: line.getStops()) {
                     BusTimetable timetable = new BusTimetable(line.getName());
@@ -70,10 +70,10 @@ public class main extends Application {
 
         ////
 
-        for (Street s: street_list) {
-            objects.add(s);
-        }
+        objects.addAll(street_list);
+
         for (Stop s: stop_list) {
+            s.set_street_list(street_list);
             if (!(s.is_corner())) {
                 objects.add(s);
             }
@@ -151,7 +151,7 @@ public class main extends Application {
             public void handle(ActionEvent event) {
                 for (Street street : street_list) {
                     if(Integer.parseInt(my_controller.collapse_street.getText()) == street.getStreet_id()){
-
+                        street.set_colapse_level(Integer.parseInt(my_controller.collapse_level.getText()));
                     }
                 }
             }
