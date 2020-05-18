@@ -116,6 +116,24 @@ public class main extends Application {
             }
         });
 
+        my_controller.update_line_button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(!my_controller.update_line_text.getText().isEmpty()) {
+                    String tmp = my_controller.update_line_text.getText();
+                    String data = tmp.substring(tmp.indexOf(";"));
+                    tmp = tmp.substring(0, tmp.indexOf(";"));
+                    for ( Line line : lines_list) {
+                        if(Integer.parseInt(tmp) == line.getLine_id()){
+                            line.change_route.(stop_list ,data);
+                        }
+                    }
+                }
+            }
+        });
+
+
+
         my_controller.setLines(lines_list);
         my_controller.start_timer();
     }

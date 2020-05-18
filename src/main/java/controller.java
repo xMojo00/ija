@@ -72,6 +72,12 @@ public class controller {
     @FXML
     CheckBox corner_checkbox;
 
+    @FXML
+    Button update_line_button;
+
+    @FXML
+    TextField update_line_text;
+
 
 
 

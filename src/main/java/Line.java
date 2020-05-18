@@ -87,6 +87,10 @@ public class Line implements draw_map {
         return this.name;
     }
 
+    public int getLine_id(){
+        return this.line_id;
+    }
+
     /**
      * Vrací seznam vytvořených tvarů.
      * @return Seznam objetků typu tvar.

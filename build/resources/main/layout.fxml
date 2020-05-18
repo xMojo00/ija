@@ -52,6 +52,13 @@
                </padding>
             </Button>
             <CheckBox fx:id="corner_checkbox" layoutX="11.0" layoutY="231.0" mnemonicParsing="false" text="Zobrazit zachytne body" />
+            <Label layoutX="10.0" layoutY="385.0" text="Zmena trasy:" />
+            <TextField fx:id="update_line_text" layoutX="10.0" layoutY="401.0" prefHeight="26.0" prefWidth="127.0" promptText="id;id_zach_bodu" />
+            <Button fx:id="update_line_button" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="151.0" layoutY="401.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="►" textAlignment="CENTER">
+               <padding>
+                  <Insets top="-2.0" />
+               </padding>
+            </Button>
          </children></AnchorPane>
    </right>
    <top>
