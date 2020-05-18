@@ -55,6 +55,10 @@ public class Stop implements draw_map {
         timetables.add(t);
     }
 
+    public void clear_timetable(){
+        timetables.clear();
+    }
+
     /**
      * Vrací seznam příjezdů linek na stopce.
      * @return Seznam příjezdů linek

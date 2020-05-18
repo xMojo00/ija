@@ -32,7 +32,6 @@ public class main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
         parseInputData parser = new parseInputData();
         controller my_controller = load.getController();
         List<Stop> stop_list = parser.getStops();
@@ -40,35 +39,7 @@ public class main extends Application {
         List<Line> lines_list = parser.getLines(stop_list);
         List<draw_map> objects = new ArrayList<>();
 
-        //// jizdni rady
-
-        for (Line line: lines_list) {
-            List<Integer> visited = new ArrayList<>();
-            Coordinate old = line.getStop(0).get_coordinates();
-            Coordinate current;
-            int delay = 0;
-                for (Stop stops: line.getStops()) {
-                    BusTimetable timetable = new BusTimetable(line.getName());
-                    current = stops.get_coordinates();
-
-
-                    double x_distance = Math.pow(Math.abs(old.x - current.x),2);
-                    double y_distance = Math.pow(Math.abs(old.y - current.y),2);
-                    double distance = Math.sqrt(x_distance + y_distance);
-                    delay = (int) ((delay * 1.0004) + distance);
-
-                    old = stops.get_coordinates();
-                    for (LocalTime t : line.getStart_times()) {
-                        timetable.addTime(t.plusSeconds(delay));
-                    }
-                    if (!visited.contains(stops.get_id())) {
-                        stops.add_timetable(timetable);
-                        visited.add(stops.get_id());
-                    }
-                }
-        }
-
-        ////
+        scheadule(lines_list);
 
         objects.addAll(street_list);
 
@@ -128,6 +99,10 @@ public class main extends Application {
                             line.change_route(stop_list ,data);
                         }
                     }
+                for (Stop stops : stop_list) {
+                    stops.clear_timetable();
+                }
+                scheadule(lines_list);
                 }
             }
         });
@@ -167,5 +142,33 @@ public class main extends Application {
      */
     public static void main(String[] args){
         launch(args);
+    }
+
+    public void scheadule(List<Line> lines_list){
+        for (Line line: lines_list) {
+            List<Integer> visited = new ArrayList<>();
+            Coordinate old = line.getStop(0).get_coordinates();
+            Coordinate current;
+            int delay = 0;
+            for (Stop stops : line.getStops()) {
+                BusTimetable timetable = new BusTimetable(line.getName());
+                current = stops.get_coordinates();
+
+
+                double x_distance = Math.pow(Math.abs(old.x - current.x),2);
+                double y_distance = Math.pow(Math.abs(old.y - current.y),2);
+                double distance = Math.sqrt(x_distance + y_distance);
+                delay = (int) ((delay * 1.0004) + distance);
+
+                old = stops.get_coordinates();
+                for (LocalTime t : line.getStart_times()) {
+                    timetable.addTime(t.plusSeconds(delay));
+                }
+                if (!visited.contains(stops.get_id())) {
+                    stops.add_timetable(timetable);
+                    visited.add(stops.get_id());
+                }
+            }
+        }
     }
 }
