@@ -64,7 +64,7 @@ public class controller {
     private Slider time_speed_slider;
 
     @FXML
-    private TextField close_street;
+    TextField close_street;
 
     @FXML
     Button close_street_button;
@@ -78,6 +78,8 @@ public class controller {
     @FXML
     TextField update_line_text;
 
+    @FXML
+    TextArea lines_to_update;
 
 
 

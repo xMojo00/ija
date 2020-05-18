@@ -59,6 +59,8 @@
                   <Insets top="-2.0" />
                </padding>
             </Button>
+            <TextArea fx:id="lines_to_update" editable="false" layoutX="9.0" layoutY="314.0" prefHeight="64.0" prefWidth="183.0" />
+            <Label layoutX="10.0" layoutY="291.0" prefHeight="16.0" prefWidth="140.0" text="Linky k uprave:" />
          </children></AnchorPane>
    </right>
    <top>

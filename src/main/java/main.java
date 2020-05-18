@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -122,10 +123,24 @@ public class main extends Application {
                 if(!my_controller.update_line_text.getText().isEmpty()) {
                     String tmp = my_controller.update_line_text.getText();
                     String data = tmp.substring(tmp.indexOf(";")+1);
-                    tmp = tmp.substring(0, tmp.indexOf(";"));
+                    tmp = tmp.substring(0,tmp.indexOf(";"));
                     for ( Line line : lines_list) {
                         if(Integer.parseInt(tmp) == line.getLine_id()){
                             line.change_route(stop_list ,data);
+                        }
+                    }
+                }
+            }
+        });
+
+        my_controller.close_street_button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(!my_controller.close_street.getText().isEmpty()) {
+                    for (Street street : street_list) {
+                        if(my_controller.close_street.getText() == street.getStreet_name()){
+                            String info = street.disable_street(lines_list);
+                            my_controller.lines_to_update.setText(info);
                         }
                     }
                 }
