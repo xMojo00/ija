@@ -111,6 +111,10 @@ public class main extends Application {
                 }
 
                 }
+                if(unaviable_lines.isEmpty()){
+                    my_controller.time_speed_slider.setValue(1);
+                    my_controller.speed_change();
+                }
             }
         });
 
@@ -122,6 +126,8 @@ public class main extends Application {
                         if(Integer.parseInt(my_controller.close_street.getText()) == street.getStreet_id()){
                             String info = street.disable_street(lines_list, unaviable_lines);
                             my_controller.lines_to_update.setText(info);
+                            my_controller.time_speed_slider.setValue(0);
+                            my_controller.speed_change();
                         }
                     }
                 }
@@ -131,9 +137,11 @@ public class main extends Application {
         my_controller.collapse_button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                for (Street street : street_list) {
-                    if(Integer.parseInt(my_controller.collapse_street.getText()) == street.getStreet_id()){
-                        street.set_colapse_level(Integer.parseInt(my_controller.collapse_level.getText()));
+                if(my_controller.collapse_level.getText().matches("^[1-5]$") && my_controller.collapse_street.getText().matches("^[0-9]+$")) {
+                    for (Street street : street_list) {
+                        if (Integer.parseInt(my_controller.collapse_street.getText()) == street.getStreet_id()) {
+                            street.set_colapse_level(Integer.parseInt(my_controller.collapse_level.getText()));
+                        }
                     }
                 }
             }

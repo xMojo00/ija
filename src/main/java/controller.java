@@ -61,7 +61,7 @@ public class controller {
     private TextField seconds;
 
     @FXML
-    private Slider time_speed_slider;
+    Slider time_speed_slider;
 
     @FXML
     TextField close_street;
@@ -113,7 +113,7 @@ public class controller {
      * Nastavuje hodnotu proměnné na hodnotu nastavenou na posuvníku.
      */
     @FXML
-    private void speed_change(){
+    void speed_change(){
         var_time_speed = (int) time_speed_slider.getValue();
     }
 
