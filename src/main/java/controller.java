@@ -262,13 +262,19 @@ public class controller {
         int delay = 0;
         Coordinate old = vehicle.getLine().getStops().get(0).get_coordinates();
         Coordinate current;
+        int i = 0;
         for (Stop stop : vehicle.getLine().getStops()) {
+            i++;
             current = stop.get_coordinates();
             double x_distance = Math.pow(Math.abs(old.x - current.x),2);
             double y_distance = Math.pow(Math.abs(old.y - current.y),2);
             double distance = Math.sqrt(x_distance + y_distance);
             delay = (int) ((delay * 1.0004) + distance);
             old = stop.get_coordinates();
+
+            if (vehicle.get_index() == i-1){
+                stops_string.append("---------- Aktualni pozice\n");
+            }
 
             if(!stop.is_corner()) {
                 stops_string.append(stop.getStop_name()).append("\n");

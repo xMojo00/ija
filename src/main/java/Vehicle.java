@@ -50,6 +50,11 @@ public class Vehicle implements draw_map {
         this.my_shape = bus.get(bus.size() - 1);
     }
 
+
+    public int get_index() {
+        return index;
+    }
+
     /**
      * Vrací pravdivostí hodnotu, jestli se vozidlo nachází na poslední zastávce.
      * @return PRavdivostní hodnota.
