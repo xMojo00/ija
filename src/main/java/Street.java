@@ -91,7 +91,7 @@ public class Street implements draw_map {
         return tmp_list;
     }
 
-    public String disable_street(List<Line> lines) {
+    public String disable_street(List<Line> lines, List<Integer> closed_lines) {
         List<Coordinate> temp = new ArrayList<>();
 
         if(blocked){
@@ -123,7 +123,9 @@ public class Street implements draw_map {
                                 line.getStop(i).get_coordinates().y == co2.y &&
                                 line.getStop(i+1).get_coordinates().x == co1.x &&
                                 line.getStop(i+1).get_coordinates().y == co1.y)) {
-                            s = s.concat(Integer.toString(line.getLine_id()));
+                            if (!closed_lines.contains(line.getLine_id())) {
+                                closed_lines.add(line.getLine_id());
+                            }
                             found = true;
                         }
 
@@ -131,6 +133,10 @@ public class Street implements draw_map {
                 }
             }
         }
+        for (Integer line: closed_lines) {
+            s = s.concat("Linka ").concat(Integer.toString(line)).concat("\n");
+        }
+
         blocked = true;
         return s;
     }

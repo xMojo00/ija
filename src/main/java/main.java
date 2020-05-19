@@ -17,7 +17,7 @@ import java.util.List;
  * @author Petr Balazy, Mojmír Kyjonka
  */
 public class main extends Application {
-
+    List<Integer> unaviable_lines = new ArrayList<>();
     /**
      * Zapíná GUI.
      * @param primaryStage Hlavní stage.
@@ -103,6 +103,13 @@ public class main extends Application {
                     stops.clear_timetable();
                 }
                 scheadule(lines_list);
+
+                unaviable_lines.remove(unaviable_lines.indexOf(Integer.parseInt(tmp)));
+                my_controller.lines_to_update.setText("");
+                for (int line:unaviable_lines) {
+                    my_controller.lines_to_update.appendText("Linka " + line + "\n");
+                }
+
                 }
             }
         });
@@ -113,7 +120,7 @@ public class main extends Application {
                 if(!my_controller.close_street.getText().isEmpty()) {
                     for (Street street : street_list) {
                         if(Integer.parseInt(my_controller.close_street.getText()) == street.getStreet_id()){
-                            String info = street.disable_street(lines_list);
+                            String info = street.disable_street(lines_list, unaviable_lines);
                             my_controller.lines_to_update.setText(info);
                         }
                     }
@@ -153,7 +160,6 @@ public class main extends Application {
             for (Stop stops : line.getStops()) {
                 BusTimetable timetable = new BusTimetable(line.getName());
                 current = stops.get_coordinates();
-
 
                 double x_distance = Math.pow(Math.abs(old.x - current.x),2);
                 double y_distance = Math.pow(Math.abs(old.y - current.y),2);
