@@ -55,6 +55,9 @@ public class Stop implements draw_map {
         timetables.add(t);
     }
 
+    /**
+     * Smaže obsah seznamu s časy příjezdů.
+     */
     public void clear_timetable(){
         timetables.clear();
     }
@@ -103,10 +106,18 @@ public class Stop implements draw_map {
         return tmp_list;
     }
 
+    /**
+     * Uloží seznam ulic.
+     * @param list Seznam ulic.
+     */
     public void set_street_list(List<Street> list) {
         this.streets = list;
     }
 
+    /**
+     * Vratí seznam ulic.
+     * @return Seznam ulic.
+     */
     public List<Street> get_street_list() {
         return this.streets;
     }

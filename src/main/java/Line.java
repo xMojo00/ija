@@ -110,6 +110,11 @@ public class Line implements draw_map {
         return my_shape;
     }
 
+    /**
+     * Změna trasy.
+     * @param stops Seznam zastávek.
+     * @param input Řetězec obsahující kontrolní body.
+     */
     public void change_route(List<Stop> stops, String input) {
         this.stops.clear();
         String[] data = input.split(",");

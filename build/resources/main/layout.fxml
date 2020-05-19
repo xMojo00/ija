@@ -34,7 +34,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="stops" alignment="TOP_LEFT" layoutX="9.0" layoutY="35.0" prefHeight="23.0" prefWidth="178.0" />
+            <Label fx:id="stops" alignment="BOTTOM_LEFT" layoutX="9.0" layoutY="35.0" prefHeight="23.0" prefWidth="178.0" />
             <TextArea fx:id="text" editable="false" layoutY="64.0" prefHeight="141.0" prefWidth="210.0" />
             <Label layoutX="10.0" layoutY="498.0" prefHeight="16.0" prefWidth="90.0" text="Nastavit čas:" />
             <TextField fx:id="hours" alignment="CENTER" layoutX="10.0" layoutY="520.0" prefHeight="26.0" prefWidth="36.0" promptText="HH">

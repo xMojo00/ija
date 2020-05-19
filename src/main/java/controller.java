@@ -367,6 +367,10 @@ public class controller {
         }
     }
 
+    /**
+     * Vypíše nebo odstraní ID kontrolních bodů.
+     * @param stops Seznam zastávek.
+     */
     void draw_corners(List<Stop> stops){
         if(corner_checkbox.isSelected()){
             for (Stop stop: stops) {

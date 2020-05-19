@@ -54,22 +54,42 @@ public class Street implements draw_map {
         return this.my_shape;
     }
 
+    /**
+     * Vrací ID ulice.
+     * @return ID ulice.
+     */
     public int getStreet_id() {
         return this.street_id;
     }
 
+    /**
+     * Vrací číselnou úroveň provozu na ulici.
+     * @return Úroveň provozu.
+     */
     public int street_colapse_level() {
         return this.street_colapse;
     }
 
+    /**
+     * Nastaví úroveň provozu na ulici.
+     * @param i Úroveň provozu.
+     */
     public void set_colapse_level(int i) {
         this.street_colapse = i;
     }
 
+    /**
+     * Vraci pravda jestliže je ulice uzavřena.
+     * @return Pravda, jetliže je ulice uzavřena.
+     */
     public boolean getBlocked(){
         return blocked;
     }
 
+    /**
+     * Vrací souřadnice ulice.
+     * @return Souřadnice ulice.
+     */
     public ArrayList<Coordinate> get_coordinates() {
         return this.co;
     }
@@ -91,6 +111,12 @@ public class Street implements draw_map {
         return tmp_list;
     }
 
+    /**
+     * Uzavře ulici a vrací řetězec s linkama, které se musí upravit.
+     * @param lines Seznam linek.
+     * @param closed_lines Seznam uzavřených linek.
+     * @return Řetězec linek.
+     */
     public String disable_street(List<Line> lines, List<Integer> closed_lines) {
         List<Coordinate> temp = new ArrayList<>();
 

@@ -21,7 +21,7 @@ public class main extends Application {
     /**
      * Zapíná GUI.
      * @param primaryStage Hlavní stage.
-     * @throws Exception Vyjimka
+     * @throws Exception Vyjimka.
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -159,6 +159,10 @@ public class main extends Application {
         launch(args);
     }
 
+    /**
+     * Vypočítá čas příjezdu na zastávku.
+     * @param lines_list Seznam linek.
+     */
     public void scheadule(List<Line> lines_list){
         for (Line line: lines_list) {
             List<Integer> visited = new ArrayList<>();
