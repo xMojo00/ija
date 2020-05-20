@@ -132,7 +132,7 @@ public class Vehicle implements draw_map {
                 if(found){
                     x_share /= street.street_colapse_level();
                     y_share /= street.street_colapse_level();
-                    this.time_delay = this.time_delay.plusSeconds(multiplier);
+                    this.time_delay = this.time_delay.plusSeconds((street.street_colapse_level()-1)*multiplier);
                     break;
                 }
 
