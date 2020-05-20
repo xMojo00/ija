@@ -63,16 +63,16 @@ public class Street implements draw_map {
     }
 
     /**
-     * Vrací číselnou úroveň provozu na ulici.
-     * @return Úroveň provozu.
+     * Vrací číselnou úroven provozu na ulici.
+     * @return Úroven provozu.
      */
     public int street_colapse_level() {
         return this.street_colapse;
     }
 
     /**
-     * Nastaví úroveň provozu na ulici.
-     * @param i Úroveň provozu.
+     * Nastaví úroven provozu na ulici.
+     * @param i Úroven provozu.
      */
     public void set_colapse_level(int i) {
         this.street_colapse = i;
@@ -115,7 +115,7 @@ public class Street implements draw_map {
      * Uzavře ulici a vrací řetězec s linkama, které se musí upravit.
      * @param lines Seznam linek.
      * @param closed_lines Seznam uzavřených linek.
-     * @return Řetězec linek.
+     * @return Retězec linek.
      */
     public String disable_street(List<Line> lines, List<Integer> closed_lines) {
         List<Coordinate> temp = new ArrayList<>();
