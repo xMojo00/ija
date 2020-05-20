@@ -19,6 +19,7 @@ public class Vehicle implements draw_map {
     private int index = 1;
     private Shape my_shape;
     private LocalTime start_time;
+    private LocalTime time_delay = LocalTime.of(0,0,0);
 
     /**
      * Vytváří vozidlo.
@@ -95,7 +96,7 @@ public class Vehicle implements draw_map {
             x_share *= multiplier;
             y_share *= multiplier;
 
-            /// pokud je na jeble ulici tak rip zpomalit
+            /// pokud je na ulici tak zpomalit
 
             for (Street street:street_list) {
 
@@ -131,6 +132,7 @@ public class Vehicle implements draw_map {
                 if(found){
                     x_share /= street.street_colapse_level();
                     y_share /= street.street_colapse_level();
+                    this.time_delay = this.time_delay.plusSeconds(multiplier);
                     break;
                 }
 
@@ -209,6 +211,10 @@ public class Vehicle implements draw_map {
      */
     public Line getLine(){
         return this.line;
+    }
+
+    public LocalTime getTime_delay(){
+        return this.time_delay;
     }
 
     /**

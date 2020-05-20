@@ -263,6 +263,9 @@ public class controller {
         Coordinate old = vehicle.getLine().getStops().get(0).get_coordinates();
         Coordinate current;
         int i = 0;
+        stops_string.append("              +");
+        stops_string.append(String.format("%02d:%02d:%02d", vehicle.getTime_delay().getHour(), vehicle.getTime_delay().getMinute(), vehicle.getTime_delay().getSecond()));
+        stops_string.append("\n");
         for (Stop stop : vehicle.getLine().getStops()) {
             i++;
             current = stop.get_coordinates();
@@ -277,8 +280,8 @@ public class controller {
             }
 
             if(!stop.is_corner()) {
-                stops_string.append(stop.getStop_name()).append("\n");
-                stops_string.append(" ").append(vehicle.getStart_time().plusSeconds(delay)).append("\n");
+                stops_string.append(stop.getStop_name()).append("\n ");
+                stops_string.append(vehicle.getStart_time().plusSeconds(delay)).append("\n");
             }
         }
         if(mark_line.size() < 1) {
